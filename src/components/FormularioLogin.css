@@ -1,0 +1,111 @@
+.login {
+    width: 730px;
+    height: 600px;
+    border-radius: 12px;
+    background-color: white;
+    margin: 12vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.login h2 {
+    color: #b619b9;
+    margin-top: 50px;
+}
+  
+.formulario {
+    flex-grow: 1;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.email {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.label-email {
+    margin-left: 5px;
+}
+
+.label-senha {
+    margin-left: 5px;
+}
+
+.input-email {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.input-senha {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.senha {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.botao-entrar {
+    border: none;
+    padding: 0;
+}
+
+.senha-esquecida {
+    margin-top: 20px;
+    color: #b619b9;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.senha-esquecida:hover {
+    text-decoration: underline;
+}
+
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.input-email.error {
+    border: none;
+    outline: 1px solid red;
+}
+
+.input-senha.error {
+    border: none;
+    outline: 1px solid red;
+}
+
+.login-label-email {
+    margin: 0px 0px 7px 5px;
+}
+
+.login-label-senha {
+    margin: 0px 0px 7px 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .login {
+      width: 90%;
+    }
+
+    .formulario {
+        width: 70%;
+    }
+}
+  
