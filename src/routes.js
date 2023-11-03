@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegistroPage from "./pages/RegistroPage";
+import Unknown from "./components/Unknown";
+import LoginPage from "./pages/LoginPage/";
+import RegistroPage from "./pages/RegistroPage/";
 
 function RoutesApp() {
     return (
@@ -9,6 +10,7 @@ function RoutesApp() {
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/registro" element={<RegistroPage/>} />
                 <Route path="/home" element={<div></div>}/>
+                <Route path="*" element={<Unknown/>}></Route>
             </Routes>
         </BrowserRouter>
     );
