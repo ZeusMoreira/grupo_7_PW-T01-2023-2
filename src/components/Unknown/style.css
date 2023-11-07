@@ -1,0 +1,26 @@
+
+.error {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    gap: 4;
+}
+
+.error-img {
+    width: 300px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 2%;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-25px);
+    }
+}

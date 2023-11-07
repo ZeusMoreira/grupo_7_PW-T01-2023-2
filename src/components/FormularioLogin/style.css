@@ -1,0 +1,235 @@
+.login {
+    width: 730px;
+    height: 600px;
+    border-radius: 12px;
+    background-color: white;
+    margin: 12vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.login h2 {
+    color: #b619b9;
+    margin-top: 50px;
+}
+  
+.formulario {
+    flex-grow: 1;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.email {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.label-email {
+    margin-left: 5px;
+}
+
+.label-senha {
+    margin-left: 5px;
+}
+
+.input-email {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.input-senha {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.senha {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.botao-entrar {
+    border: none;
+    padding: 0;
+}
+
+.senha-esquecida {
+    margin-top: 20px;
+    color: #b619b9;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.senha-esquecida:hover {
+    text-decoration: underline;
+}
+
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.input-email.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.input-senha.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.redefinicao-input-email.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.redefinicao-input-email {
+    width: 98%;
+    border-radius: 6px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.login-label-email {
+    margin: 0px 0px 7px 5px;
+}
+
+.login-label-senha {
+    margin: 0px 0px 7px 5px;
+}
+
+.redefinicao-label-email{
+    margin: 0px 0px 20px 2px;
+}
+
+.modal {
+    width: 350px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    z-index: 2; /* Coloca o modal acima da sobreposição */
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 350px;
+    margin-top: 5px;
+}
+
+.modal form .botao-enviar {
+    color: white;
+    align-self: flex-end;
+    margin-top: 30px;
+    margin-right: 5px;
+    background-color: #b619b9;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    padding-right: 55px; /* Espaço para o ícone */
+}
+
+.password-container .show-password {
+    color: #808080;
+    user-select: none;
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+    z-index: 1; /* Coloca a sobreposição acima de outros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    width: 120px;
+    height: 75px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.loader span {
+    font-size: 22px;
+    text-transform: uppercase;
+    color: white;
+    margin: auto;
+}
+
+.ball {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+    animation: bounce .5s alternate infinite;
+}
+
+.ball:nth-child(2){
+    animation-delay: .16s;
+}
+
+.ball:nth-child(3){
+    animation-delay: .32s;
+}
+
+@keyframes bounce {
+    from {
+        transform: scaleX(1.25);
+    }
+    to {
+        transform: translateY(-50px) scaleX(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .login {
+      width: 90%;
+    }
+
+    .formulario {
+        width: 70%;
+    }
+}
+  
