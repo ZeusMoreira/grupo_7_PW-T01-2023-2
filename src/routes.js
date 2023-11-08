@@ -5,6 +5,7 @@ import RegistroPage from "./pages/RegistroPage/";
 import HomePage from "./pages/HomePage";
 import PrivateRoute from "./PrivateRoute";
 import FreeRoute from "./FreeRoute";
+import RankingPage from "./pages/RankingPage";
 
 function RoutesApp() {
     return (
@@ -13,6 +14,7 @@ function RoutesApp() {
                 <Route path="/" element={<FreeRoute Component={LoginPage} />} />
                 <Route path="/registro" element={<RegistroPage/>} />
                 <Route path="/home" element={<PrivateRoute Component={HomePage} />} />
+                <Route path="/ranking" element={<PrivateRoute Component={RankingPage} />} />
                 <Route path="*" element={<Unknown/>}></Route>
             </Routes>
         </BrowserRouter>

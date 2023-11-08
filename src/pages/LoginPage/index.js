@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import FormularioLogin from '../../components/FormularioLogin';
 import BotaoTematico from '../../components/BotaoTematico';
 
-export const LoginPage= () => {
+export const LoginPage = () => {
   const handleCriarContaClick = () => {
-    console.log("Botão 'Criar Conta' clicado!");
   }
 
   const botaoCriarContaProps = {

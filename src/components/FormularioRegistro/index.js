@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { getFirestore, setDoc, doc, collection, getDocs, query, where } from 'firebase/firestore';
+import { getFirestore, setDoc, doc, collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import BotaoTematico from '../BotaoTematico';
 import { toast } from "react-toastify";
@@ -115,8 +115,9 @@ function FormularioRegistro() {
     const db = getFirestore();
 
     const usersCollection = collection(db, 'users');
-    const querySnapshot = await getDocs(query(usersCollection, where('username', '==', usuario)));
-
+    let querySnapshot = await getDocs(query(usersCollection, where('username', '==', usuario)));
+    
+    
     if (!querySnapshot.empty) {
       setVerificacaoConcluida(false);
       setErros({
@@ -126,6 +127,15 @@ function FormularioRegistro() {
       return;
     }
 
+    querySnapshot = await getDocs(query(usersCollection, orderBy('posicao', 'asc')));
+    let posicaoRanking = 1
+
+    if (!querySnapshot.empty) {
+      const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
+      const posicao = lastDocument.data().posicao;
+      posicaoRanking = posicao + 1
+    }
+  
     setRequisicaoEmAndamento(true)
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
@@ -138,7 +148,7 @@ function FormularioRegistro() {
       const userData = {
         username: usuario,
         score: 0,
-        posicao: null,
+        posicao: posicaoRanking,
         categoriaFavorita: null,
         tipo: "comum",
         uid: user.uid

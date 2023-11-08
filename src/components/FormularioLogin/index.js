@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BotaoTematico from "../BotaoTematico";
 import './style.css';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
 
 function FormularioLogin() {
   const navigate = useNavigate();
