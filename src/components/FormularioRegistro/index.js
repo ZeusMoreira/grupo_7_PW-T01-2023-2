@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { getFirestore, setDoc, doc, collection, getDocs, query, where, orderBy } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import BotaoTematico from '../BotaoTematico';
 import { toast } from "react-toastify";
+import { isMobile } from 'react-device-detect';
 
 import './style.css';
 
@@ -25,6 +26,25 @@ function FormularioRegistro() {
     mensagemErro: ""
   })
   const [verificacaoConcluida, setVerificacaoConcluida] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if(isMobile){
+      document.querySelector('.cadastro').style.height = 'auto'
+    } else if(window.innerWidth < 768){
+      document.querySelector('.cadastro').style.height = '200vh'
+    } 
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   
   const alternarVisibilidadeSenha = () => {
     setMostrarSenha(!mostrarSenha);
@@ -45,7 +65,9 @@ function FormularioRegistro() {
     if (verificacaoConcluida) {
       registrarUsuario()
     }
+    // eslint-disable-next-line
   }, [verificacaoConcluida]);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -238,8 +260,8 @@ function FormularioRegistro() {
       }
       <h2>Registrar</h2>
       <form className="formulario" onSubmit={handleSubmit}>
-        <div className="usuario">
-          <h3 className="label-usuario">Usuário</h3>
+        <div className="usuario-registro">
+          <h3 className="label-usuario-registro">Usuário</h3>
           <input
             maxLength={16}
             type="text"
@@ -254,46 +276,46 @@ function FormularioRegistro() {
             placeholder="Digite seu usuário"
             disabled={requisicaoEmAndamento}
           />
-          {usuarioValido ? null : <div className="error-message">O campo deve ser preenchido.</div>}
-          {usuarioFormatoValido ? null : <div className="error-message">O usuário deve conter acima de 4 caracteres.</div>}
+          {usuarioValido ? null : <div className="error-message-registro">O campo deve ser preenchido.</div>}
+          {usuarioFormatoValido ? null : <div className="error-message-registro">O usuário deve conter acima de 4 caracteres.</div>}
         </div>
         <div className="registro-senha">
           <h3 className="registro-label-senha">Senha</h3>
-          <div class="password-container">
+          <div class="password-container-registro">
               <input
                 type={mostrarSenha ? "text" : "password"}
                 name="senha"
                 value={state.senha}
                 onChange={handleChange}
                 className={
-                  senhaValida && tamanhoSenhaValido ? 'input-senha' : 'input-senha erro'
+                  senhaValida && tamanhoSenhaValido ? 'input-senha-registro' : 'input-senha-registro erro'
                 }
                 placeholder="Digite sua senha"
                 disabled={requisicaoEmAndamento}
             />
             <i className="material-icons show-password" onClick={alternarVisibilidadeSenha}>{mostrarSenha ? "visibility" : "visibility_off"}</i>
           </div>
-          {senhaValida ? null : <div className="error-message">O campo deve ser preenchido.</div>}
-          {tamanhoSenhaValido ? null : <div className="error-message">A senha deve conter pelo menos 6 caracteres.</div>}
+          {senhaValida ? null : <div className="error-message-registro">O campo deve ser preenchido.</div>}
+          {tamanhoSenhaValido ? null : <div className="error-message-registro">A senha deve conter pelo menos 6 caracteres.</div>}
         </div>
-        <div className="repetir-senha">
-          <h3 className="label-repetir-senha">Repetir Senha</h3>
-          <div class="password-container">
+        <div className="repetir-senha-registro">
+          <h3 className="label-repetir-senha-registro">Repetir Senha</h3>
+          <div class="password-container-registro">
               <input
                 type={mostrarSenhaRepetida ? "text" : "password"}
                 name="senhaRepetida"
                 value={state.senhaRepetida}
                 onChange={handleChange}
                 className={
-                  repetirSenhaValida && senhasIguais ? 'input-senha' : 'input-senha erro'
+                  repetirSenhaValida && senhasIguais ? 'input-senha-registro' : 'input-senha-registro erro'
                 }
                 placeholder="Repetir senha"
                 disabled={requisicaoEmAndamento}
             />
             <i className="material-icons show-password" onClick={alternarVisibilidadeSenhaRepetida}>{mostrarSenhaRepetida ? "visibility" : "visibility_off"}</i>
           </div>
-          {repetirSenhaValida ? null : <div className="error-message">O campo deve ser preenchido.</div>}
-          {senhasIguais ? null : <div className="error-message">As senhas informadas não coincidem.</div>}
+          {repetirSenhaValida ? null : <div className="error-message-registro">O campo deve ser preenchido.</div>}
+          {senhasIguais ? null : <div className="error-message-registro">As senhas informadas não coincidem.</div>}
         </div>
         <div className="registro-email">
           <h3 className="registro-label-email">Email</h3>
@@ -303,19 +325,28 @@ function FormularioRegistro() {
             value={state.email}
             onChange={handleChange}
             className={
-              emailValido && emailFormatoValido ? 'input-email' : 'input-email erro'
+              emailValido && emailFormatoValido ? 'input-email-registro' : 'input-email-registro erro'
             }
             placeholder="Digite seu e-mail"
             disabled={requisicaoEmAndamento}
           />
-          {emailValido ? null : <div className="error-message">O campo deve ser preenchido.</div>}
-          {emailFormatoValido ? null : <div className="error-message">O formato do email preenchido não é válido.</div>}
+          {emailValido ? null : <div className="error-message-registro">O campo deve ser preenchido.</div>}
+          {emailFormatoValido ? null : <div className="error-message-registro">O formato do email preenchido não é válido.</div>}
         </div>
-        {requisicaoEmAndamento ? <span className="spinner"></span> : <BotaoTematico className="botao-registrar" {...botaoRegistrarProps}></BotaoTematico>}
+        {requisicaoEmAndamento ? <span className="spinner-registro"></span> : <BotaoTematico className="botao-registrar" {...botaoRegistrarProps}></BotaoTematico>}
+        {
+          windowWidth <= 710  && 
+          <div className="entrar-responsivo">
+            <span>Já possui uma conta?</span>
+            <Link className="possui-conta-responsivo" to="/">
+              <span className="possui-conta"> Entre aqui!</span>
+            </Link>
+          </div>
+        }
       </form>
-      {erros.mostrarErro && <div className="overlay" onClick={fecharModalErro}></div>}
+      {erros.mostrarErro && <div className="overlay-registro" onClick={fecharModalErro}></div>}
       {erros.mostrarErro && (
-        <div className="modal">
+        <div className="modal-registro">
           <p>{erros.mensagemErro}</p>
           <button className="botao-erro" onClick={fecharModalErro}>
             Fechar

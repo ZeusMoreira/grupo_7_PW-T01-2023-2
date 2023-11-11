@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BotaoTematico from "../BotaoTematico";
 import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
+import { isMobile } from 'react-device-detect';
 
 function FormularioLogin() {
   const navigate = useNavigate();
@@ -21,6 +22,26 @@ function FormularioLogin() {
   const [enviandoRedefinicaoSenha, setEnviandoRedefinicaoSenha] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [requisicaoEmAndamento, setRequisicaoEmAndamento] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if(isMobile){
+      document.querySelector('.login').style.height = 'auto'
+    } else if(window.innerWidth < 768){
+      document.querySelector('.login').style.height = '200vh'
+    } 
+    
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const alternarVisibilidadeSenha = () => {
     setMostrarSenha(!mostrarSenha);
@@ -172,7 +193,7 @@ function FormularioLogin() {
   return (
     <div className="login">
       {requisicaoEmAndamento && 
-        <div className="overlay">
+        <div className="overlay-login">
             <div class="loader">
               <div class="ball"></div>
               <div class="ball"></div>
@@ -182,22 +203,22 @@ function FormularioLogin() {
         </div>
       }
       <h2>Login</h2>
-      <form className="formulario" onSubmit={handleSubmit}>
-        <div className="email">
+      <form className="formulario-login" onSubmit={handleSubmit}>
+        <div className="email-login">
           <h3 className="login-label-email">Email</h3>
           <input
             type="text"
             name="email"
             value={email}
             onChange={handleChange}
-            className={emailValido ? "input-email" : "input-email erro"}
+            className={emailValido ? "input-email-login" : "input-email-login erro"}
             placeholder="Digite seu e-mail"
           />
           {!emailValido ? (
-            <div className="error-message">O campo deve ser preenchido.</div>
+            <div className="error-message-login">O campo deve ser preenchido.</div>
           ) : null}
         </div>
-        <div className="senha">
+        <div className="senha-login">
           <h3 className="login-label-senha">Senha</h3>
           <div class="password-container">
               <input
@@ -205,30 +226,39 @@ function FormularioLogin() {
                 name="senha"
                 value={senha}
                 onChange={handleChange}
-                className={senhaValida ? "input-senha" : "input-senha erro"}
+                className={senhaValida ? "input-senha-login" : "input-senha-login erro"}
                 placeholder="Digite sua senha"
             />
             <i className="material-icons show-password" onClick={alternarVisibilidadeSenha}>{mostrarSenha ? "visibility" : "visibility_off"}</i>
           </div>
           {!senhaValida ? (
-            <div className="error-message">O campo deve ser preenchido.</div>
+            <div className="error-message-login">O campo deve ser preenchido.</div>
           ) : null}
         </div>
         <BotaoTematico className="botao-entrar" {...botaoEntrarProps}></BotaoTematico>
         <span onClick={abrirModalRedefinicaoSenha} className="senha-esquecida">Esqueci minha senha</span>
+        {
+          windowWidth <= 710 && 
+          <div className="criar-conta-responsiva">
+            <span>Não possui uma conta?</span>
+            <Link className="senha-esquecida-responsiva" to="/registro">
+              <span className="senha-esquecida"> Crie já!</span>
+            </Link>
+          </div>
+        }
       </form>
-      {erros.mostrarErro && <div className="overlay" onClick={fecharModalErro}></div>}
+      {erros.mostrarErro && <div className="overlay-login" onClick={fecharModalErro}></div>}
       {erros.mostrarErro && (
-        <div className="modal">
+        <div className="modal-login">
           <p>{erros.mensagemErro}</p>
           <button className="botao-erro" onClick={fecharModalErro}>
             Fechar
           </button>
         </div>
       )}
-      {recuperacaoEmail && <div className="overlay" onClick={fecharModalRedefinicao}></div>}
+      {recuperacaoEmail && <div className="overlay-login" onClick={fecharModalRedefinicao}></div>}
       {recuperacaoEmail && (
-        <div className="modal">
+        <div className="modal-login">
           <form onSubmit={handleSubmitRecuperacao}>
             <h3 className="redefinicao-label-email">Digite seu email</h3>
             <input
@@ -240,11 +270,10 @@ function FormularioLogin() {
               placeholder="Digite seu e-mail"
             />
 
-            {emailRecuperacaoValido ? null : <div className="error-message">O campo deve ser preenchido.</div>}
-            {emailRecuperacaoFormatoValido ? null : <div className="error-message">O formato do email preenchido não é válido.</div>}
+            {emailRecuperacaoValido ? null : <div className="error-message-login">O campo deve ser preenchido.</div>}
+            {emailRecuperacaoFormatoValido ? null : <div className="error-message-login">O formato do email preenchido não é válido.</div>}
             <BotaoTematico className="botao-enviar" {...botaoEnviarProps}></BotaoTematico>
           </form>
-          
         </div>
       )}
     </div>

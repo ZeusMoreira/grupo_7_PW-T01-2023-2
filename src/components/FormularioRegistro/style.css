@@ -28,12 +28,12 @@
     margin-bottom: 50px;
 }
 
-.repetir-senha {
+.repetir-senha-registro {
     width: 100%;
     margin-bottom: 30px;
 }
 
-.usuario {
+.usuario-registro {
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -47,11 +47,11 @@
     margin: 0px 0px 7px 5px;
 }
 
-.label-usuario {
+.label-usuario-registro {
     margin: 0px 0px 7px 5px;
 }
 
-.label-repetir-senha {
+.label-repetir-senha-registro {
     margin: 0px 0px 7px 5px;
 }
 
@@ -63,7 +63,7 @@
     box-sizing: border-box;
 }
 
-.input-email {
+.input-email-registro {
     width: 98%;
     border-radius: 12px;
     border: 1px solid;
@@ -71,7 +71,7 @@
     box-sizing: border-box;
 }
 
-.input-senha {
+.input-senha-registro {
     width: 98%;
     border-radius: 12px;
     border: 1px solid;
@@ -89,19 +89,35 @@
     padding: 0;
 }
 
-.error-message{
+.entrar-responsivo {
+    margin-top: 20px;
+}
+
+.possui-conta-responsivo {
+    color: #b619b9;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.possui-conta-responsivo:hover {
+    text-decoration: underline;
+}
+
+
+.error-message-registro{
     color: red;
     font-size: 14px;
     margin-top: 5px;
     margin-left: 5px;
 }
 
-.input-email.erro {
+.input-email-registro.erro {
     border: none;
     outline: 1px solid red;
 }
 
-.input-senha.erro {
+.input-senha-registro.erro {
     border: none;
     outline: 1px solid red;
 }
@@ -111,7 +127,7 @@
     outline: 1px solid red;
 }
 
-.spinner {
+.spinner-registro {
     width: 2.5rem;
     height: 2.5rem;
     display: inline-block;
@@ -123,7 +139,7 @@
     align-self: center;
 }
 
-.overlay {
+.overlay-registro {
     position: fixed;
     top: 0;
     left: 0;
@@ -149,7 +165,7 @@
     animation-delay: .32s;
 }
 
-.modal {
+.modal-registro {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -178,15 +194,15 @@
     font-weight: bold;
 }
 
-.password-container {
+.password-container-registro {
     position: relative;
 }
 
-.password-container input {
+.password-container-registro input {
     padding-right: 55px; /* Espaço para o ícone */
 }
 
-.password-container .show-password {
+.password-container-registro .show-password {
     color: #808080;
     user-select: none;
     position: absolute;
@@ -214,11 +230,44 @@
 
 @media screen and (max-width: 768px) {
     .cadastro {
-      width: 90%;
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        justify-content: flex-start;
+        height: 200vh;
     }
 
-    .formulario {
-        width: 70%;
+    .cadastro h2 {
+        color: #b619b9;
+        margin-top: 50px;
+    }
+    
+    .input-email-registro {
+        font-size: 14px;
+    }
+
+    .input-senha-registro {
+        font-size: 14px;
+    }
+
+    .input-usuario-registro {
+        font-size: 14px;
     }
 }
-  
+
+@media screen and (max-width: 670px) and (orientation: landscape) {
+    .cadastro {
+        height: auto;
+    }
+
+    .header-registro {
+        height: 30vh !important;
+    }
+}
+
+
+@media screen and (max-width: 550px){
+    .modal-registro {
+        width: 100vw;
+    }
+}

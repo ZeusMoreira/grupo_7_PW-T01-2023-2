@@ -4,7 +4,7 @@
     margin-right: 2%;
   }
   
-  .header {
+  .header-registro {
     position: relative;
     width: 100%;
     height: 130px;
@@ -24,11 +24,10 @@
     position: absolute;
     top: 35%;
     right: 10%;
-    height: 200px;
     text-decoration: none;
   } 
 
-  .logo-container {
+  .logo-container-registro {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,12 +37,14 @@
     transform: translate(-50%, -50%); /* Alinha o conteúdo ao centro absoluto */
 }
   
-  .logo {
+  .logo-registro {
     text-transform: capitalize;
     color: white;
+    cursor: default;
+    user-select: none;
   }
   
-  .logo span {
+  .logo-registro span {
     text-transform: uppercase;
     background-color: white;
     border-radius: 10px;
@@ -52,20 +53,59 @@
     color: #393434;
   }
   
-  .sizedbox {
+  .sizedbox-registro {
     width: 150px;
     height: 45px;
   }
   
-  .container {
+  .container-registro {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center
   }
   
-  @media screen and (max-width: 768px) {
-    .header {
+  @media screen and (max-width: 768px){
+    .header-registro {
+      position: initial;
+      flex-direction: row;
+      height: 15vh !important;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .logo-container-registro {
+      position: initial;
+      padding: 0 !important;
+      margin: 0 0 0 10% !important;
+      transform: none;
+    }
+  
+    .botao-login {
+      position: initial;
+      margin: 0 10% 0 0 !important;
+    }
+  
+    .container-registro {
+      height: 100vh;
+    }
+  }
+  
+  @media screen and (max-width: 710px) {
+    .header-registro {
+      justify-content: center;
+      align-items: center;
+      height: 15vh !important;
+    }
+  
+    .logo-container-registro {
+      margin: 0 !important;
+    }
+  }
+
+
+  /* @media screen and (max-width: 768px) and (orientation: portrait) {
+    .header-registro {
       flex-direction: column;
       justify-content: space-around;
       height: 35%;
@@ -86,3 +126,28 @@
         transform: translate(-50%, 0%);
     }
   }
+
+  @media screen and (max-width: 768px) and (orientation: landscape){
+    .header-registro {
+      flex-direction: row;
+      height: 30vh !important;
+      justify-content: center;
+    }
+  
+    .logo-container-registro {
+      top: 50% !important;
+      left: 20% !important;
+    }
+  
+    .logo-registro {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  
+    .botao-login {
+      position: initial;
+      margin-top: 0 !important;
+      margin-right: 10%;
+    }
+  } */
+

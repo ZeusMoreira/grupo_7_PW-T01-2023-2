@@ -3,7 +3,7 @@
   margin-right: 2%;
 }
 
-.header {
+.header-login {
   position: relative;
   width: 100%;
   height: 130px;
@@ -23,11 +23,10 @@
   position: absolute;
   top: 35%;
   right: 10%;
-  height: 200px;
   text-decoration: none;
 } 
 
-.logo-container {
+.logo-container-login {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,12 +36,14 @@
   transform: translate(-50%, -50%); /* Alinha o conteúdo ao centro absoluto */
 }
 
-.logo {
+.logo-login {
   text-transform: capitalize;
   color: white;
+  cursor: default;
+  user-select: none;
 }
 
-.logo span {
+.logo-login span {
   text-transform: uppercase;
   background-color: white;
   border-radius: 10px;
@@ -51,37 +52,52 @@
   color: #393434;
 }
 
-.sizedbox {
+.sizedbox-login {
   width: 150px;
   height: 45px;
 }
 
-.container {
+.container-login {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center
 }
 
-@media screen and (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    justify-content: space-around;
-    height: 35%;
+@media screen and (max-width: 768px){
+  .header-login {
+    position: initial;
+    flex-direction: row;
+    height: 15vh !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-container-login {
+    position: initial;
+    padding: 0 !important;
+    margin: 0 0 0 10% !important;
+    transform: none;
   }
 
   .botao-criar-conta {
-    margin-right: 0;
-    margin-bottom: 5%;
+    position: initial;
+    margin: 0 10% 0 0 !important;
   }
 
-  .cadastro {
-    width: 80%;
+  .container-login {
+    height: 100vh;
   }
-
-  .botao-criar-conta {
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, 0%);
 }
+
+@media screen and (max-width: 710px) {
+  .header-login {
+    justify-content: center;
+    align-items: center;
+    height: 15vh !important;
+  }
+
+  .logo-container-login {
+    margin: 0 !important;
+  }
 }

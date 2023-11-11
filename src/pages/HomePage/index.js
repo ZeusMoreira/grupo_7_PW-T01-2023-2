@@ -1,4 +1,3 @@
-
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import './style.css';
 import React, { useEffect, useState } from 'react';
@@ -6,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BotaoCategoria from './BotaoCategoria';
 import BotaoTematico from '../../components/BotaoTematico';
 import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/firestore';
+import { isMobile } from 'react-device-detect';
 
 export const HomePage = () => {
     const navigate = useNavigate();
@@ -23,6 +23,7 @@ export const HomePage = () => {
         label: "",
         link: "",
     });
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     const handleInside = (event) => {
         event.stopPropagation();
@@ -43,7 +44,16 @@ export const HomePage = () => {
         }
     };
 
+    const acessarMinhaConta = () => {
+        navigate('/minha-conta');   
+    };
+
     useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        
+        window.addEventListener('resize', handleResize);
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -55,6 +65,7 @@ export const HomePage = () => {
         buscarCategorias();
         return () => {
             unsubscribe();
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -94,7 +105,7 @@ export const HomePage = () => {
         backgroundColor: "#b619b9",
         color: "white",
         label: imagemCategoriaTopUm.label,
-        width: window.innerWidth < 620 ? "80%" : "45%",
+        width: window.innerWidth < 768 ? "80%" : "45%",
         borderRadius: "6px",
         link: imagemCategoriaTopUm.link,
     };
@@ -103,7 +114,7 @@ export const HomePage = () => {
         backgroundColor: "#b619b9",
         color: "white",
         label: imagemCategoriaTopDois.label,
-        width: window.innerWidth < 620 ? "80%" : "45%",
+        width: window.innerWidth < 768 ? "80%" : "45%",
         borderRadius: "6px",
         link: imagemCategoriaTopDois.link,
     };
@@ -112,7 +123,7 @@ export const HomePage = () => {
         backgroundColor: "#b619b9",
         color: "white",
         label: imagemCategoriaTopTres.label,
-        width: window.innerWidth < 620 ? "80%" : "45%",
+        width: window.innerWidth < 768 ? "80%" : "45%",
         borderRadius: "6px",
         link: imagemCategoriaTopTres.link,
     };
@@ -127,17 +138,19 @@ export const HomePage = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container-home">
             { balaoVisivel &&
-                <div id="overlay" onMouseEnter={handleOutside}></div>
+                <div className="overlay-home" onMouseEnter={handleOutside}></div>
             }
-            <div className="header">
-                <div className="sizedbox"></div>
-                <div className="logo-container">
-                    <h1 className="logo">Quizz<span>ES</span></h1>
+            <div className="header-home">
+                {
+                    (isMobile || windowWidth <= 710) ? null: <div className="sizedbox-home"></div>
+                }
+                <div className="logo-container-home">
+                    <h1 className="logo-home">Quizz<span>ES</span></h1>
                 </div>
-                <div id="menu-options">
-                    <span className="user-text" onMouseEnter={handleInside}>
+                <div id="menu-options-home">
+                    <span className="user-text-home" onMouseEnter={handleInside}>
                         Olá, {userName}! 
                         { balaoVisivel &&
                             <i className="material-icons" style={iconStyle}>arrow_drop_up</i>
@@ -148,13 +161,13 @@ export const HomePage = () => {
                     </span>     
                     {balaoVisivel &&
                         <div id="container-menu">
-                            <div className="telhado"></div>
-                            <div id="balao-retangular">
-                                <div className="minha-conta">
+                            <div className="telhado-menu-home"></div>
+                            <div id="balao-retangular-menu-home">
+                                <div className="minha-conta-home" onClick={acessarMinhaConta}>
                                     <i className="material-icons">person</i>
                                     <span>Minha Conta</span>
                                 </div>
-                                <div className="sair" onClick={sair}>
+                                <div className="sair-home" onClick={sair}>
                                     <i className="material-icons">exit_to_app</i>
                                     <span>Sair</span>
                                 </div>
@@ -163,8 +176,8 @@ export const HomePage = () => {
                     }   
                 </div>
             </div>
-            <div className="container-primary">
-                <div className="ranking-container" onClick={acessarRanking}>
+            <div className="container-ranking-home" onClick={acessarRanking}>
+                <div className="container-ranking-home-content">
                     <span>Acesse o nosso ranking!</span>
                     <img className="ranking-img" src="https://firebasestorage.googleapis.com/v0/b/quizzes-f7aec.appspot.com/o/ranking.png?alt=media&token=ba723bff-5ee7-4834-92d5-35f6906e1013&_gl=1*zufyba*_ga*ODU3MDEwNTIxLjE2OTgzOTYzMjk.*_ga_CW55HF8NVT*MTY5OTMzMjQ2MS4xMS4xLjE2OTkzMzQ0OTAuNTAuMC4w" alt="imagem de página não encontrada."></img>   
                 </div>
@@ -177,10 +190,9 @@ export const HomePage = () => {
                     <BotaoCategoria {...botaoCategoriaTopTres}></BotaoCategoria>
                 </div>
             </div>
-            <div className="container-botao">
-                <BotaoTematico className="botao-text" {...botaoJogarProps}></BotaoTematico>
+            <div className="container-botao-jogar">
+                <BotaoTematico className="botao-jogar" {...botaoJogarProps}></BotaoTematico>
             </div>
-             
         </div>
     );
 };

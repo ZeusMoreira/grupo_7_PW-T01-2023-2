@@ -1,10 +1,25 @@
 import './style.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BotaoTematico from '../../components/BotaoTematico';
 import FormularioRegistro from '../../components/FormularioRegistro';
+import { isMobile } from 'react-device-detect';
 
 export const RegistroPage = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const botaoCriarContaProps = {
     backgroundColor: "white",
     color: "#b619b9",
@@ -15,15 +30,22 @@ export const RegistroPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <div className="sizedbox"></div>
-        <div className="logo-container">
-          <h1 className="logo">Quizz<span>ES</span></h1>
+    <div className="container-registro">
+      <div className="header-registro">
+        {
+          (isMobile || windowWidth <= 710) ?
+            null: <div className="sizedbox-login-registro"></div>
+        }
+        <div className="logo-container-registro">
+          <h1 className="logo-registro">Quizz<span>ES</span></h1>
         </div>
-        <Link className="botao-login" to="/">
-          <BotaoTematico {...botaoCriarContaProps} />
-        </Link>
+        {
+          windowWidth > 710 &&
+          <Link className="botao-login" to="/">
+            <BotaoTematico {...botaoCriarContaProps} />
+          </Link>
+        }
+        
       </div>
       <FormularioRegistro />
     </div>

@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import PrivateRoute from "./PrivateRoute";
 import FreeRoute from "./FreeRoute";
 import RankingPage from "./pages/RankingPage";
+import MinhaContaPage from "./pages/MinhaContaPage";
 
 function RoutesApp() {
     return (
@@ -15,6 +16,10 @@ function RoutesApp() {
                 <Route path="/registro" element={<RegistroPage/>} />
                 <Route path="/home" element={<PrivateRoute Component={HomePage} />} />
                 <Route path="/ranking" element={<PrivateRoute Component={RankingPage} />} />
+                <Route path="/minha-conta" element={<PrivateRoute Component={MinhaContaPage} />}>
+                    <Route index element={<div></div>} />
+                    <Route path="editar" element={<div></div>} />
+                </Route>
                 <Route path="*" element={<Unknown/>}></Route>
             </Routes>
         </BrowserRouter>

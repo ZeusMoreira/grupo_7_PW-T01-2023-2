@@ -1,12 +1,24 @@
 import './style.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FormularioLogin from '../../components/FormularioLogin';
 import BotaoTematico from '../../components/BotaoTematico';
+import { isMobile } from 'react-device-detect';
 
 export const LoginPage = () => {
-  const handleCriarContaClick = () => {
-  }
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const botaoCriarContaProps = {
     backgroundColor: "white",
@@ -18,15 +30,20 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <div className="sizedbox"></div>
-        <div className="logo-container">     
-          <h1 className="logo">Quizz<span>ES</span></h1>
+    <div className="container-login">
+      <div className="header-login">
+        {
+          (isMobile || windowWidth <= 710) ?
+            null: <div className="sizedbox-login"></div>
+        }
+        <div className="logo-container-login">     
+          <h1 className="logo-login">Quizz<span>ES</span></h1>
         </div>
-        <Link className="botao-criar-conta" to="/registro">
-          <BotaoTematico onClick={handleCriarContaClick} {...botaoCriarContaProps} />
-        </Link>
+        { windowWidth > 710 &&
+          <Link className="botao-criar-conta" to="/registro">
+            <BotaoTematico {...botaoCriarContaProps} />
+          </Link>
+        }
       </div>
       <FormularioLogin />
     </div>
