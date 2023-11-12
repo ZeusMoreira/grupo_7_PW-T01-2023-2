@@ -17,14 +17,17 @@ function Tabela({ columns, data }) {
     });
 
     useEffect(() => {
+        const tableBody = document.querySelector('tbody')
+        const container = document.querySelector('.cont')
         if(isMobile){
-            document.querySelector('tbody').style.width = 'auto'
-            document.querySelector('.cont').style.width = 'auto'
-            document.querySelector('.cont').style.padding = '1em'
+            tableBody.style.width = 'auto'
+            container.style.width = 'auto'
+            container.style.margin = '0 1em 0 1em'
+            container.style.padding= '0'
         } else {
-            document.querySelector('tbody').style.width = 'calc(100% + 1em)'
-            document.querySelector('.cont').style.width = 'calc(100% - 2.5em)'
-            document.querySelector('.cont').style.padding = 0
+            tableBody.style.width = 'calc(100% + 1em)'
+            container.style.width = 'calc(100% - 2.5em)'
+            container.style.padding = 0
         }
     })
 

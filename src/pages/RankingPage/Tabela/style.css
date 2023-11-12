@@ -50,7 +50,7 @@ table {
 
 tbody {
     display: block;
-    height: calc(550px - 55px);
+    height: calc(550px - 54px);
     overflow: auto;
     width: calc(100% + 1em);
 }
