@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import BotaoCategoria from './BotaoCategoria';
 import BotaoTematico from '../../components/BotaoTematico';
 import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/firestore';
-import { isMobile } from 'react-device-detect';
 
 export const HomePage = () => {
     const navigate = useNavigate();
@@ -23,7 +22,6 @@ export const HomePage = () => {
         label: "",
         link: "",
     });
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     const handleInside = (event) => {
         event.stopPropagation();
@@ -49,11 +47,6 @@ export const HomePage = () => {
     };
 
     useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-        
-        window.addEventListener('resize', handleResize);
         const auth = getAuth();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -65,7 +58,6 @@ export const HomePage = () => {
         buscarCategorias();
         return () => {
             unsubscribe();
-            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -143,9 +135,6 @@ export const HomePage = () => {
                 <div className="overlay-home" onMouseEnter={handleOutside}></div>
             }
             <div className="header-home">
-                {
-                    (isMobile || windowWidth <= 710) ? null: <div className="sizedbox-home"></div>
-                }
                 <div className="logo-container-home">
                     <h1 className="logo-home">Quizz<span>ES</span></h1>
                 </div>
@@ -159,27 +148,26 @@ export const HomePage = () => {
                             <i className="material-icons" style={iconStyle}>arrow_drop_down</i>
                         }
                     </span>     
-                    {balaoVisivel &&
-                        <div id="container-menu">
-                            <div className="telhado-menu-home"></div>
-                            <div id="balao-retangular-menu-home">
-                                <div className="minha-conta-home" onClick={acessarMinhaConta}>
-                                    <i className="material-icons">person</i>
-                                    <span>Minha Conta</span>
-                                </div>
-                                <div className="sair-home" onClick={sair}>
-                                    <i className="material-icons">exit_to_app</i>
-                                    <span>Sair</span>
-                                </div>
+                    <div id="container-menu" className={balaoVisivel ? 'visible' : ''}>
+                        <div className="telhado-menu-home"></div>
+                        <div id="balao-retangular-menu-home">
+                            <div className="minha-conta-home" onClick={acessarMinhaConta}>
+                                <i className="material-icons">person</i>
+                                <span>Minha Conta</span>
+                            </div>
+                            <div className="sair-home" onClick={sair}>
+                                <i className="material-icons">exit_to_app</i>
+                                <span>Sair</span>
                             </div>
                         </div>
-                    }   
+                    </div>
+                    
                 </div>
             </div>
             <div className="container-ranking-home" onClick={acessarRanking}>
                 <div className="container-ranking-home-content">
                     <span>Acesse o nosso ranking!</span>
-                    <img className="ranking-img" src="https://firebasestorage.googleapis.com/v0/b/quizzes-f7aec.appspot.com/o/ranking.png?alt=media&token=ba723bff-5ee7-4834-92d5-35f6906e1013&_gl=1*zufyba*_ga*ODU3MDEwNTIxLjE2OTgzOTYzMjk.*_ga_CW55HF8NVT*MTY5OTMzMjQ2MS4xMS4xLjE2OTkzMzQ0OTAuNTAuMC4w" alt="imagem de página não encontrada."></img>   
+                    <img className="ranking-img" src="https://firebasestorage.googleapis.com/v0/b/quizzes-f7aec.appspot.com/o/ranking.png?alt=media&token=ba723bff-5ee7-4834-92d5-35f6906e1013&_gl=1*zufyba*_ga*ODU3MDEwNTIxLjE2OTgzOTYzMjk.*_ga_CW55HF8NVT*MTY5OTMzMjQ2MS4xMS4xLjE2OTkzMzQ0OTAuNTAuMC4w" alt="imagem de imagem não encontrada."></img>   
                 </div>
             </div>
             <div className="categorias-populares">

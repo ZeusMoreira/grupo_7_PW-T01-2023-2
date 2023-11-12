@@ -55,7 +55,7 @@
     margin: 0px 0px 7px 5px;
 }
 
-.input-usuario {
+.input-usuario-registro {
     width: 98%;
     border-radius: 12px;
     border: 1px solid;
@@ -122,7 +122,7 @@
     outline: 1px solid red;
 }
 
-.input-usuario.erro {
+.input-usuario-registro.erro {
     border: none;
     outline: 1px solid red;
 }
@@ -145,7 +145,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo semi-transparente */
     z-index: 1; /* Coloca a sobreposição acima de outros elementos */
 }
 
@@ -269,5 +269,40 @@
 @media screen and (max-width: 550px){
     .modal-registro {
         width: 100vw;
+    }
+
+    .usuario-registro {
+        width: 80%;
+        align-self: center;
+    }
+
+    .registro-senha {
+        width: 80%;
+        align-self: center;
+    }
+
+    .repetir-senha-registro {
+        width: 80%;
+        align-self: center;
+    }
+
+    .registro-email {
+        width: 80%;
+        align-self: center;
+    }
+    
+    .botao-registrar {
+        width: 80% !important;
+        align-self: center;
+    }
+
+    .senha-esquecida {
+        width: 80%;
+        align-self: center;
+    }
+
+    .entrar-responsivo {
+        width: 80%;
+        align-self: center;
     }
 }

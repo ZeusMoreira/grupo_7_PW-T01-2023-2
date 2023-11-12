@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
+    background-color: rgb(0, 0, 0); /* Cor de fundo semi-transparente */
     z-index: 1; /* Coloca a sobreposição acima de outros elementos */
     display: flex;
     align-items: center;
@@ -22,6 +22,7 @@
 
 .loader span {
     font-size: 22px;
+    font-weight: bold;
     text-transform: uppercase;
     color: white;
     margin: auto;

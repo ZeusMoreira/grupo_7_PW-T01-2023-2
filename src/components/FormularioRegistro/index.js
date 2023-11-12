@@ -270,8 +270,8 @@ function FormularioRegistro() {
             onChange={handleChange}
             className={
               usuarioValido && usuarioFormatoValido
-                ? 'input-usuario'
-                : 'input-usuario erro'                                                                    
+                ? 'input-usuario-registro'
+                : 'input-usuario-registro erro'                                                                    
             }
             placeholder="Digite seu usuário"
             disabled={requisicaoEmAndamento}

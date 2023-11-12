@@ -106,6 +106,7 @@ function FormularioLogin() {
       await signInWithEmailAndPassword(auth, email, senha);
       navigate('/home');
     } catch (error) {
+      console.log(error)
       setRequisicaoEmAndamento(false)
       if (error.code === 'auth/invalid-login-credentials') {
         setErros({
