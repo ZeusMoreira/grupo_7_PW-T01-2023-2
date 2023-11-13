@@ -9,7 +9,7 @@
     justify-content: space-between;
     padding-top: 7vh;
     padding-bottom: 7vh;
-
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
 .logo-container-home {

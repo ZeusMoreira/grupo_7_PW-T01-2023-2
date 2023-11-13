@@ -1,4 +1,5 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { Outlet } from "react-router-dom";
 import Unknown from "./components/Unknown";
 import LoginPage from "./pages/LoginPage/";
 import RegistroPage from "./pages/RegistroPage/";
@@ -7,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import FreeRoute from "./FreeRoute";
 import RankingPage from "./pages/RankingPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
+import EditarPerfilPage from "./pages/MinhaContaPage/EditarPerfilPage";
 
 function RoutesApp() {
     return (
@@ -17,8 +19,9 @@ function RoutesApp() {
                 <Route path="/home" element={<PrivateRoute Component={HomePage} />} />
                 <Route path="/ranking" element={<PrivateRoute Component={RankingPage} />} />
                 <Route path="/minha-conta" element={<PrivateRoute Component={MinhaContaPage} />}>
-                    <Route index element={<div></div>} />
-                    <Route path="editar" element={<div></div>} />
+                    <Route index element={<PrivateRoute Component={EditarPerfilPage} />}/>
+                    <Route path="editar-perfil" element={<PrivateRoute Component={EditarPerfilPage}/>} />
+                    <Route path="meu-perfil" element={<div>tchau</div>} />
                 </Route>
                 <Route path="*" element={<Unknown/>}></Route>
             </Routes>

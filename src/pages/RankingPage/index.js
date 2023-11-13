@@ -68,7 +68,6 @@ export const RankingPage = () => {
     return (
         <div className="container-ranking-page">
             <div className="header-ranking">
-                <div className="sizedbox-ranking"></div>
                 <div className="logo-container-ranking">
                     <h1 className="logo-ranking" onClick={navegarHome}>Quizz<span>ES</span></h1>
                 </div>
