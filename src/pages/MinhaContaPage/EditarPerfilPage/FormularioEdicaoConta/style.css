@@ -1,0 +1,181 @@
+.overlay-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo semi-transparente */
+    z-index: 1; /* Coloca a sobreposição acima de outros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edicao-conta {
+    width: 730px;
+    height: 550px;
+    border-radius: 12px;
+    margin: 8vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    justify-content: center;
+}
+
+.formulario-edicao-conta {
+    margin: 4vh 0;
+    width: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.repetir-senha-edicao-conta {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.usuario-edicao-conta {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.input-usuario-edicao-conta {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.input-usuario-edicao-conta.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.error-message-edicao-conta {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.input-senha-edicao-conta.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.label-usuario-edicao-conta {
+    margin: 0px 0px 7px 5px;
+}
+
+.senha-edicao-conta {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.edicao-conta-label-senha {
+    margin: 0px 0px 7px 5px;
+}
+
+.password-container-edicao-conta {
+    position: relative;
+}
+
+.password-container-edicao-conta input {
+    padding-right: 55px; /* Espaço para o ícone */
+}
+
+.password-container-edicao-conta .show-password {
+    color: #808080;
+    user-select: none;
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.input-senha-edicao-conta {
+    width: 98%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.label-repetir-senha-edicao-conta {
+    margin: 0px 0px 7px 5px;
+}
+
+.botao-salvar-conta {
+    border: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .edicao-conta {
+        width: 100%;
+        margin: 3vh 0;
+        border-radius: 0;
+    }
+    
+    .input-senha-edicao-conta {
+        font-size: 14px;
+    }
+
+    .input-usuario-edicao-conta {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 550px){
+    .usuario-edicao-conta {
+        width: 80%;
+        align-self: center;
+    }
+
+    .senha-edicao-conta {
+        width: 80%;
+        align-self: center;
+    }
+
+    .repetir-senha-edicao-conta {
+        width: 80%;
+        align-self: center;
+    }
+    
+    .botao-salvar-conta {
+        width: 80% !important;
+        align-self: center;
+    }
+
+    .formulario-edicao-conta {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 365px){
+    .usuario-edicao-conta {
+        width: 70%;
+        align-self: center;
+    }
+
+    .senha-edicao-conta {
+        width: 70%;
+        align-self: center;
+    }
+
+    .repetir-senha-edicao-conta {
+        width: 70%;
+        align-self: center;
+    }
+    
+    .botao-salvar-conta {
+        width: 70% !important;
+        align-self: center;
+    }
+}
