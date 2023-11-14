@@ -10,8 +10,18 @@ const PrivateRoute = ({Component}) => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                const userData = {
+                    uid: user.uid,
+                    email: user.email,
+                };
+                localStorage.setItem("@detailUser", JSON.stringify(userData));
                 setUser(true)
             } else {
+                const userData = {
+                    uid: "",
+                    email: "",
+                };
+                localStorage.setItem("@detailUser", JSON.stringify(userData));
                 setUser(false)
             }
           });
