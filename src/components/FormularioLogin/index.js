@@ -270,7 +270,6 @@ function FormularioLogin() {
               className={emailRecuperacaoValido && emailRecuperacaoFormatoValido ? "redefinicao-input-email" : "redefinicao-input-email erro"}
               placeholder="Digite seu e-mail"
             />
-
             {emailRecuperacaoValido ? null : <div className="error-message-login">O campo deve ser preenchido.</div>}
             {emailRecuperacaoFormatoValido ? null : <div className="error-message-login">O formato do email preenchido não é válido.</div>}
             <BotaoTematico className="botao-enviar" {...botaoEnviarProps}></BotaoTematico>

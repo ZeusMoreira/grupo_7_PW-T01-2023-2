@@ -128,7 +128,7 @@ export const MinhaContaPage = () => {
     color: botaoEditarProps.color,
     label: "Editar Perfil",
     height: "50px",
-    width: "150px",
+    width: "20%",
     borderRadius: "6px",
   };
 
@@ -137,7 +137,7 @@ export const MinhaContaPage = () => {
     color: botaoGerenciarQuizzesProps.color,
     label: "Gerenciar Quizzes",
     height: "50px",
-    width: "150px",
+    width: "20%",
     borderRadius: "6px",
   };
 
@@ -146,7 +146,7 @@ export const MinhaContaPage = () => {
     color: botaoVisualizarPerfilProps.color,
     label: "Meu Perfil",
     height: "50px",
-    width: "150px",
+    width: "20%",
     borderRadius: "6px",
   };
 

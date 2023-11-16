@@ -1,4 +1,4 @@
-.overlay-login {
+.overlay-edicao-conta {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,11 +11,26 @@
     justify-content: center;
 }
 
+#my-tooltip {
+    width: 200px;
+    z-index: 2;
+    text-align: start;
+}
+
+.row-campos-edicao {
+    display: flex;
+}
+
+.info-campos-edicao{
+    margin-left: 0.2vw;
+    color: #808080;
+}
+
 .edicao-conta {
-    width: 730px;
-    height: 550px;
+    width: 60vw;
+    margin: 3vh 0;
+    padding: 10vh 0 10vh;
     border-radius: 12px;
-    margin: 8vh 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +39,6 @@
 }
 
 .formulario-edicao-conta {
-    margin: 4vh 0;
     width: 365px;
     display: flex;
     flex-direction: column;
@@ -130,7 +144,6 @@
         font-size: 14px;
     }
 }
-
 
 @media screen and (max-width: 550px){
     .usuario-edicao-conta {

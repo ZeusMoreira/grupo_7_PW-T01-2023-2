@@ -1,5 +1,4 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import { Outlet } from "react-router-dom";
 import Unknown from "./components/Unknown";
 import LoginPage from "./pages/LoginPage/";
 import RegistroPage from "./pages/RegistroPage/";
@@ -11,6 +10,7 @@ import MinhaContaPage from "./pages/MinhaContaPage";
 import EditarPerfilPage from "./pages/MinhaContaPage/EditarPerfilPage";
 import AdminRoute from "./AdminRoute";
 import GerenciarQuizzesPage from "./pages/MinhaContaPage/GerenciarQuizzesPage";
+import MeuPerfilPage from "./pages/MinhaContaPage/MeuPerfilPage";
 
 function RoutesApp() {
     return (
@@ -24,7 +24,7 @@ function RoutesApp() {
                     <Route index element={<PrivateRoute Component={EditarPerfilPage} />}/>
                     <Route path="editar-perfil" element={<PrivateRoute Component={EditarPerfilPage}/>} />
                     <Route path="gerenciar-quizzes" element={<AdminRoute Component={GerenciarQuizzesPage}/>} />
-                    <Route path="meu-perfil" element={<div>tchau</div>} />
+                    <Route path="meu-perfil" element={<PrivateRoute Component={MeuPerfilPage}/>} />
                 </Route>
                 <Route path="*" element={<Unknown/>}></Route>
             </Routes>

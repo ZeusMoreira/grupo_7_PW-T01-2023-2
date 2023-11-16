@@ -29,10 +29,10 @@ const PrivateRoute = ({Component}) => {
 
     if (user === null) {
         return <div className="overlay">
-            <div class="loader">
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <div class="ball"></div>
+            <div className="loader">
+                <div className="ball"></div>
+                <div className="ball"></div>
+                <div className="ball"></div>
                 <span>Loading...</span>
             </div>
         </div>

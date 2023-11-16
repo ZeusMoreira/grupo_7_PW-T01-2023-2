@@ -1,0 +1,13 @@
+#tooltip-quiz-criacao{
+    background-color: #b619b9;
+    color: white;
+    width: 150px;
+    z-index: 2;
+    text-align: start;
+    font-weight: 500;
+}
+
+.a-tooltip {
+    height: 30px;
+    display: inline-block;
+}

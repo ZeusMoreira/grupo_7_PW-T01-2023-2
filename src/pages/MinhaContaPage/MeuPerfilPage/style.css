@@ -1,0 +1,77 @@
+.container-meu-perfil {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.visualizacao-conta {
+    margin: 3vh 0;
+    width: 45vw;
+    padding: 5vh 0 20vh;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.dados-usuario {
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.dados-usuario span {
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.dados-usuario span .info-user{
+    color: #959595;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+
+.informacoes-conta {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.informacoes-title {
+    align-self: center;
+    color: #b619b9;
+    margin: 0;
+    padding: 0;
+}
+
+.local-spinner-profile {
+    margin-top: 18%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .visualizacao-conta {
+        width: 100%;
+        margin: 3vh 0;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .dados-usuario {
+        margin-left: 5vw;
+    }
+}
+

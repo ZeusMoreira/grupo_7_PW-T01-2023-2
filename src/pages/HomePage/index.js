@@ -69,18 +69,20 @@ export const HomePage = () => {
         querySnapshot.forEach((doc) => {
             topCategorias.push(doc.data()) 
         })
-        setImagemCategoriaTopUm({
-            label: topCategorias[0].nome,
-            link: topCategorias[0].link,
-        })
-        setImagemCategoriaTopDois({
-            label: topCategorias[1].nome,
-            link: topCategorias[1].link,
-        })
-        setImagemCategoriaTopTres({
-            label: topCategorias[2].nome,
-            link: topCategorias[2].link,
-        })
+        if(topCategorias.length > 0){
+            setImagemCategoriaTopUm({
+                label: topCategorias[0].nome,
+                link: topCategorias[0].link,
+            })
+            setImagemCategoriaTopDois({
+                label: topCategorias[1].nome,
+                link: topCategorias[1].link,
+            })
+            setImagemCategoriaTopTres({
+                label: topCategorias[2].nome,
+                link: topCategorias[2].link,
+            }) 
+        }  
     }
 
     const acessarRanking = async (event) => {
@@ -148,7 +150,7 @@ export const HomePage = () => {
                             <i className="material-icons" style={iconStyle}>arrow_drop_down</i>
                         }
                     </span>     
-                    <div id="container-menu" className={balaoVisivel ? 'visible' : ''}>
+                    <div id="container-menu" className={`container-menu ${balaoVisivel ? 'visible' : ''}`}>
                         <div className="telhado-menu-home"></div>
                         <div id="balao-retangular-menu-home">
                             <div className="minha-conta-home" onClick={acessarMinhaConta}>

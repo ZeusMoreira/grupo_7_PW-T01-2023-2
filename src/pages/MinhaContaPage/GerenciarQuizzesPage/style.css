@@ -1,0 +1,114 @@
+.gerenciar-quiz-content {
+    display: flex;
+    flex-grow: 1;
+}
+  
+.sidebar {
+    width: 0;
+    flex-grow: 1;
+    height: 100%;
+    background-color: #393434; 
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+
+.gerenciar-quiz-content.open .sidebar {
+    flex-grow: 1;
+    width: 20vw;
+}
+
+.gerenciar-quiz-content.open .content {  
+    width: calc(100vw - 20vw);
+    display: flex;
+}
+
+.content {
+    transition: width 0.5s;
+    display: flex;
+    width: 100vw;
+}
+
+.open-icon {
+    height: fit-content;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 10px; 
+    font-size: 30px;
+}
+
+.close-icon {
+    height: fit-content;
+    color: white;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.conteudo-principal {
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    height: 550px;
+    margin-left: 10%;
+    margin-top: 4vh;
+    margin-bottom: 10vh;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.abrir-criar {
+    margin-top: 10px;
+    margin-left: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+@media screen and (max-width: 870px){
+    .conteudo-principal {
+        height: 650px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .conteudo-principal.open-bar {
+        margin-left: 5%;
+    }
+
+    .gerenciar-quiz-content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 0;
+        flex-direction: row;
+    }
+
+    .gerenciar-quiz-content.open .sidebar {
+        flex-grow: 0;
+        width: 100%;
+        height: 20vh;
+    }
+
+    .abrir-criar {
+        margin-top: 25px;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .menu-icone-fechar {
+        margin-bottom: 0;
+    }
+
+    .gerenciar-quiz-content.open .content {  
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+}
