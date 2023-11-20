@@ -195,10 +195,10 @@ function FormularioLogin() {
     <div className="login">
       {requisicaoEmAndamento && 
         <div className="overlay-login">
-            <div class="loader">
-              <div class="ball"></div>
-              <div class="ball"></div>
-              <div class="ball"></div>
+            <div className="loader">
+              <div className="ball"></div>
+              <div className="ball"></div>
+              <div className="ball"></div>
               <span>Loading...</span>
             </div>
         </div>
@@ -221,7 +221,7 @@ function FormularioLogin() {
         </div>
         <div className="senha-login">
           <h3 className="login-label-senha">Senha</h3>
-          <div class="password-container">
+          <div className="password-container">
               <input
                 type={mostrarSenha ? "text" : "password"}
                 name="senha"

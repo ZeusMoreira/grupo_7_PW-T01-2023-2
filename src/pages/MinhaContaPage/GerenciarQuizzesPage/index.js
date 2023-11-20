@@ -6,9 +6,23 @@ import Content from './components/Content';
 export const GerenciarQuizzesPage = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [ehModoCriacao, setEhModoCriacao] = useState(false);
+  const [ehModoEdicao, setEhModoEdicao] = useState(false)
+  const [quizIdSelecionado, setQuizIdSelecionado] = useState(null);
+
+  const handleQuizSelection = (selectedQuizId) => {
+    setQuizIdSelecionado(selectedQuizId);
+    setEhModoCriacao(false);
+    setEhModoEdicao(true);
+  };
+
+  const handleCriarSelection = () => {
+    setQuizIdSelecionado(null);
+    setEhModoCriacao(true);
+    setEhModoEdicao(false);
+  };
   
   const toggleSidebar = () => {
-    if(!ehModoCriacao){
+    if(!ehModoCriacao && !ehModoEdicao){
       return
     }
     setSidebarOpen(!isSidebarOpen);
@@ -19,11 +33,19 @@ export const GerenciarQuizzesPage = () => {
       <Sidebar 
         toggleSidebar={toggleSidebar}
         ehModoCriacao={ehModoCriacao}
-        setEhModoCriacao={setEhModoCriacao} />
+        setEhModoCriacao={setEhModoCriacao} 
+        ehModoEdicao={ehModoEdicao}  
+        setEhModoEdicao={setEhModoEdicao}
+        onQuizSelect={handleQuizSelection}
+        onCriarSelect={handleCriarSelection}
+      />
       <Content 
         toggleSidebar={toggleSidebar}
         isSidebarOpen={isSidebarOpen}
-        ehModoCriacao={ehModoCriacao}/>
+        ehModoCriacao={ehModoCriacao}
+        ehModoEdicao={ehModoEdicao}
+        quizIdSelecionado={quizIdSelecionado}  
+      />
     </div>
   );
 }

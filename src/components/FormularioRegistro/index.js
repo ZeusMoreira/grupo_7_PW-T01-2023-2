@@ -250,10 +250,10 @@ function FormularioRegistro() {
     <div className="cadastro">
       {requisicaoEmAndamento && 
         <div className="overlay">
-            <div class="loader">
-              <div class="ball"></div>
-              <div class="ball"></div>
-              <div class="ball"></div>
+            <div className="loader">
+              <div className="ball"></div>
+              <div className="ball"></div>
+              <div className="ball"></div>
               <span>Loading...</span>
             </div>
         </div>
@@ -281,7 +281,7 @@ function FormularioRegistro() {
         </div>
         <div className="registro-senha">
           <h3 className="registro-label-senha">Senha</h3>
-          <div class="password-container-registro">
+          <div className="password-container-registro">
               <input
                 type={mostrarSenha ? "text" : "password"}
                 name="senha"
@@ -300,7 +300,7 @@ function FormularioRegistro() {
         </div>
         <div className="repetir-senha-registro">
           <h3 className="label-repetir-senha-registro">Repetir Senha</h3>
-          <div class="password-container-registro">
+          <div className="password-container-registro">
               <input
                 type={mostrarSenhaRepetida ? "text" : "password"}
                 name="senhaRepetida"

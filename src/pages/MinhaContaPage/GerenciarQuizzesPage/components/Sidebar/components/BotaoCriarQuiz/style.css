@@ -10,7 +10,7 @@
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     outline: 1px solid white;
-    margin-top: 12%;
+    margin-top: 25px;
 }
 
 .botao-criar-quiz:hover {

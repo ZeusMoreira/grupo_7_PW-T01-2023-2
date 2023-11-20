@@ -6,7 +6,6 @@
 .sidebar {
     width: 0;
     flex-grow: 1;
-    height: 100%;
     background-color: #393434; 
     overflow-x: hidden;
     transition: 0.5s;
@@ -50,7 +49,7 @@
     padding: 0;
     margin: 0;
     width: 80%;
-    height: 550px;
+    height: 620px;
     margin-left: 10%;
     margin-top: 4vh;
     margin-bottom: 10vh;
@@ -65,7 +64,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    height: 150px;
+    justify-content: flex-start;
 }
 
 @media screen and (max-width: 870px){
@@ -86,16 +86,18 @@
     .sidebar {
         width: 100%;
         height: 0;
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .gerenciar-quiz-content.open .sidebar {
         flex-grow: 0;
         width: 100%;
-        height: 20vh;
+        height: auto;
+        gap: 20px;
     }
 
     .abrir-criar {
+        height: auto;
         margin-top: 25px;
         justify-content: space-between;
         flex-direction: row;
@@ -110,5 +112,21 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .conteudo-principal {
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .conteudo-principal.open-bar {  
+        width: 80%;
+        margin-left: 5%;
+        margin-top: 4vh;
+        margin-bottom: 10vh;   
+        border-radius: 12px;
     }
 }

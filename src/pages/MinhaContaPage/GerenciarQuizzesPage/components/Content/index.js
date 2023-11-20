@@ -1,19 +1,186 @@
-import { collection, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { Tooltip } from 'react-tooltip';
-import BotaoTematico from '../../../../../components/BotaoTematico/index.js';
-import Combobox from './components/Autocomplete.js/index.js';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import FormularioCriacaoQuiz from './components/FormularioCriacaoQuiz/index.js';
+import FormularioPerguntaCriacaoQuiz from './components/FormularioPerguntaCriacaoQuiz/index.js';
+import FormularioEdicaoQuiz from './components/FormularioEdicaoQuiz/index.js';
 import './style.css'
+import FormularioPerguntaEdicaoQuiz from './components/FormularioPerguntaEdicaoQuiz/index.js';
 
-const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao }) => {
+const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao, ehModoEdicao, quizIdSelecionado}) => {
+  const navigate = useNavigate();
   const [tituloQuiz, setTituloQuiz] = useState("");
   const [numeroPerguntasQuiz, setNumeroPerguntasQuiz] = useState(1)
   const [dificuldadeSelecionada, setDificuldadeSelecionada] = useState("Fácil")
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("")
-  const [tituloQuizFormatoValido,setTituloQuizFormatoValido] = useState(true)
-  const [tituloQuizValido, setTituloQuizValido] = useState(true)
   const [categorias, setCategorias] = useState([])
+  const [etapaAtual, setEtapaAtual] = useState(1)
+  const [perguntaConteudo, setPerguntaConteudo] = useState("")
+  const [respostaA, setRespostaA] = useState("")
+  const [respostaB, setRespostaB] = useState("")
+  const [respostaC, setRespostaC] = useState("")
+  const [respostaD, setRespostaD] = useState("")
+  const [respostas, setRespostas] = useState(['A', 'B', 'C', 'D'])
+  const [respostaCorreta, setRespostaCorreta] = useState("A")
+  const [perguntas, setPerguntas] = useState([])
   const [loading, setLoading] = useState(true)
+  const [tituloQuizEdicao, setTituloQuizEdicao] = useState("");
+  const [categoriaEdicao, setCategoriaEdicao] = useState("");
+  const [dificuldadeEdicao, setDificuldadeEdicao] = useState("");
+  const [numeroPerguntasQuizEdicao, setNumeroPerguntasQuizEdicao] = useState(1)
+  const [perguntasEdicao, setPerguntasEdicao] = useState([])
+  const [indicePerguntaAtual, setIndicePerguntaAtual] = useState(0)
+  
+  const handlePerguntasEdicaoQuiz = (perguntasEdicao) => {
+    setPerguntasEdicao(perguntasEdicao)
+  }
+
+  const handleSubmitCapaQuizEdicao = () => {
+    editarPerguntaCapa()
+  }
+
+  const handleTituloQuizEdicao = (tituloQuizEdicao) => {
+    setTituloQuizEdicao(tituloQuizEdicao);
+  };
+
+  const handleTituloQuiz = (tituloQuiz) => {
+    setTituloQuiz(tituloQuiz);
+  };
+
+  const handleNumeroPerguntasQuiz = (numeroPerguntas) => {
+    setNumeroPerguntasQuiz(numeroPerguntas);
+  };
+
+  const handleCategoriaQuiz = (categoria) => {
+    setCategoriaSelecionada(categoria);
+  };
+
+  const handleDificuldadeQuiz = (dificuldade) => {
+    setDificuldadeSelecionada(dificuldade);
+  };
+
+  const handleSubmitCapaQuiz = (etapa) => {
+    setEtapaAtual(etapa)
+  }
+
+  const handlePerguntaConteudoQuiz = (perguntaConteudo) => {
+    setPerguntaConteudo(perguntaConteudo)
+  }
+
+  const handleRespostaAQuiz = (respostaA) => {
+    setRespostaA(respostaA)
+  }
+
+  const handleRespostaBQuiz = (respostaB) => {
+    setRespostaB(respostaB)
+  }
+
+  const handleRespostaCQuiz = (respostaC) => {
+    setRespostaC(respostaC)
+  }
+
+  const handleRespostaDQuiz = (respostaD) => {
+    setRespostaD(respostaD)
+  }
+
+  const handleRespostaCorretaQuiz = (respostaCorreta) => {
+    setRespostaCorreta(respostaCorreta)
+  }
+
+  const handleSubmitPerguntaQuizEdicao = () => {
+    preparacaoSubmitPerguntaEdicao()    
+  }
+  
+  const handleSubmitPerguntaQuiz = () => {
+    preparacaoSubmitPergunta()    
+  }
+
+  const preparacaoSubmitPerguntaEdicao = async () => {
+    setLoading(true)
+    try {
+      const db = getFirestore();
+      const quizDocRef = doc(db, 'quizzes', quizIdSelecionado);
+      const quizDoc = await getDoc(quizDocRef);
+      if (quizDoc.exists()) {
+        const novasPerguntas = [...quizDoc.data().perguntas];
+        novasPerguntas[indicePerguntaAtual] = perguntasEdicao[indicePerguntaAtual];
+        await updateDoc(quizDocRef, { perguntas: novasPerguntas });
+        if(indicePerguntaAtual+1 < numeroPerguntasQuizEdicao){
+          setIndicePerguntaAtual(indicePerguntaAtual+1)
+        } else {
+          navigate('/minha-conta')
+        }
+        toast.success("Pergunta atualizada com sucesso!");
+      } else {
+        toast.error("O documento do quiz não foi encontrado!");
+      }
+    } catch(error) {
+      toast.error("Ocorreu um erro ao atualizar a pergunta!");
+    }
+    setLoading(false)
+  }
+
+  const preparacaoSubmitPergunta = () => {
+    const pergunta = {
+      indice: perguntas.length + 1,
+      pergunta: perguntaConteudo,
+      respostaA: respostaA,
+      respostaB: respostaB,
+      respostaC: respostaC,
+      respostaD: respostaD,
+      respostaCorreta: respostaCorreta,
+    }
+    setPerguntas(prevPerguntas => [...prevPerguntas, pergunta]);
+  }
+
+  useEffect(() => {
+    if (perguntas.length === numeroPerguntasQuiz) {
+      registrarPergunta();
+    } else {
+      limparCamposPergunta()
+    }
+  }, [perguntas]);
+
+  const registrarPergunta = async () => {
+    const quiz = {
+      tituloQuiz: tituloQuiz,
+      numeroPerguntas: numeroPerguntasQuiz,
+      categoria: categoriaSelecionada,
+      dificuldade: dificuldadeSelecionada,
+      perguntas: perguntas,
+      id: null,
+    }
+
+    setLoading(true)
+    const db = getFirestore();
+    try {    
+      const quizzesCollection = collection(db, 'quizzes');
+      const docRef = await addDoc(quizzesCollection, quiz);
+      quiz.id = docRef.id
+      const quizDocRef = doc(db, 'quizzes', docRef.id);
+      await updateDoc(quizDocRef, { id: docRef.id });
+    } catch (error) {
+      toast.error('Erro ao adicionar documento')
+    }
+
+    try {
+      const categoriasCollection = collection(db, 'categorias');
+      const querySnapshot = await getDocs(query(categoriasCollection, where('nome', '==', quiz.categoria)));
+      querySnapshot.forEach(async (doc) => {
+        const categoriaRef = doc.ref;
+        const atualNumeroQuizzes = doc.data().numeroQuizzes || 0;
+        await updateDoc(categoriaRef, { numeroQuizzes: atualNumeroQuizzes + 1 });
+      });
+      limparCamposPergunta()
+      limparCamposCapa()
+      navigate("/minha-conta")
+      toast.success("O quiz foi registrado com sucesso!")
+    } catch (error) {
+      toast.error('Erro ao adicionar documento')
+    }
+    setLoading(false)
+  }
 
   const buscarCategorias = async () => {
     try {
@@ -26,81 +193,106 @@ const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao }) => {
       });
       setCategorias(categorias)
       setCategoriaSelecionada(categorias[0])
+      setEtapaAtual(1)   
     } catch (error) {
-      console.error('Erro ao buscar categorias:', error);
+      toast.error('Erro ao buscar categorias:')
     } finally {
       setLoading(false); 
     }
   };
+
+  const buscarDadosQuiz = async () => {
+    setLoading(true)
+    try {
+      const db = getFirestore();
+      const quizzesCollection = collection(db, 'quizzes');
+      const querySnapshot = await getDocs(query(quizzesCollection, where('id', '==', quizIdSelecionado)));
+      querySnapshot.forEach((doc) => {
+        setNumeroPerguntasQuizEdicao(doc.data().numeroPerguntas)
+        setTituloQuizEdicao(doc.data().tituloQuiz)
+        setCategoriaEdicao(doc.data().categoria)
+        setDificuldadeEdicao(doc.data().dificuldade)
+        setPerguntasEdicao(doc.data().perguntas)
+      });
+    } catch(error) {
+      toast.error('Ocorreu um erro ao buscar o quiz!')
+    }
+    setLoading(false)
+  }
   
-  useEffect(() => {    
+  useEffect(() => { 
     buscarCategorias();
   }, []);
 
+  useEffect(() => {
+    limparCamposPergunta()
+    limparCamposCapa()
+    setIndicePerguntaAtual(0)
+    setEtapaAtual(1)
+    if(quizIdSelecionado){
+      buscarDadosQuiz()
+    }
+  }, [quizIdSelecionado])
+
+  useEffect(() => {
+    limparCamposPergunta()
+    limparCamposCapa()
+    setIndicePerguntaAtual(0)
+    setEtapaAtual(1)
+  }, [ehModoCriacao, ehModoEdicao])
+  
+
   const contentStyles = {
-    alignItems: ehModoCriacao ? 'stretch' : 'center',
-    justifyContent: ehModoCriacao ? 'stretch' : 'center',
+    alignItems: (ehModoCriacao || ehModoEdicao) ? 'stretch' : 'center',
+    justifyContent: (ehModoCriacao || ehModoEdicao) ? 'stretch' : 'center',
   };
 
-  const handleKeyPress = (e) => {
-    const inputValue = e.key;
+  const editarPerguntaCapa = async () => {
+    const dadosCapaQuizEdicao = {
+      tituloQuiz: tituloQuizEdicao,
+      dificuldade: dificuldadeEdicao,
+      id: quizIdSelecionado,
+      numeroPerguntas: numeroPerguntasQuizEdicao,
+      categoria: categoriaEdicao,
+      perguntas: perguntasEdicao,
+    }
 
-    if (!/[0-9]/.test(inputValue)) {
-      e.preventDefault();
+    setLoading(true)
+    try {  
+      const db = getFirestore();
+      const quizDocRef = doc(db, 'quizzes', quizIdSelecionado);
+      await updateDoc(quizDocRef, dadosCapaQuizEdicao);
+      toast.success("O quiz foi atualizado com sucesso!");
+      setEtapaAtual(2)
+    } catch (error) {
+      toast.error('Erro ao atualizar o quiz!');
     }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "titulo") {
-      setTituloQuiz(value);
-    }
-    if (name === "numeroPerguntas") {
-      const newValue = isNaN(value) ? 1 : Math.max(1, Math.min(10, parseInt(value, 10)));
-      setNumeroPerguntasQuiz(newValue);
-    }
-    if(name === "dificuldade"){
-      setDificuldadeSelecionada(value)
-    }
-    if(name === "categoria"){
-      setCategoriaSelecionada(value)
-    }
+    setLoading(false)
   }
 
-  const handleDificuldadeChange = (value) => {
-    handleChange({ target: { name: "dificuldade", value } });
-  };
-
-  const handleCategoriaChange = (value) => {
-    handleChange({ target: { name: "categoria", value } });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (tituloQuiz !== '') {
-      if(!ehTituloValido(tituloQuiz)){
-        setTituloQuizFormatoValido(false)
-      } else {
-        // método que vai salvar a capa do quiz
-      }
-    } else {
-      setTituloQuizValido(false)
-    }
+  const limparCamposPergunta = () => {
+    setPerguntaConteudo("")
+    setRespostaA("")
+    setRespostaB("")
+    setRespostaC("")
+    setRespostaD("")
+    setRespostaCorreta('A')
+    setRespostas(['A','B','C','D'])
+    setPerguntasEdicao([])
   }
 
-  const ehTituloValido = (email) => {
-    return email.length > 3;
-  };
 
-
-  const botaoPropsSalvarEcontinuar = {
-    backgroundColor: "#b619b9",
-    color: "white",
-    label: "Salvar e continuar",
-    height: "45px",
-    width: "150px",
-    borderRadius: "14px",
-  }
+  const limparCamposCapa = () => {
+    setTituloQuiz("")
+    setCategoriaSelecionada(categorias[0])
+    setDificuldadeSelecionada("Fácil")
+    setNumeroPerguntasQuiz(1)
+    setPerguntas([])
+    setTituloQuizEdicao("")
+    setCategoriaEdicao("")
+    setDificuldadeEdicao("")
+    setNumeroPerguntasQuizEdicao(1)  
+  }  
 
   return (
     <div className="content" style={contentStyles}>
@@ -110,7 +302,7 @@ const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao }) => {
         </i>
       }
       {
-        !ehModoCriacao &&
+        (!ehModoCriacao && !ehModoEdicao) &&
         <p className="intro-edicao-criacao">
           Aperte em Criar Quiz<br/>
           ou<br/>
@@ -122,90 +314,99 @@ const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao }) => {
           {
             ehModoCriacao && 
             <div className="criacao-quiz-wrapper">
-              <h2>Criar</h2>
               {
-                loading ? 
-                <div className="local-spinner"><span className="spinner"></span></div> : 
-                <form className="criacao-quiz-form" onSubmit={handleSubmit}>
-                  <div className="titulo-quiz-criacao">
-                    <span className="titulo-text">Título:</span>
-                    <div className="input-titulo-validation">
-                      <input
-                      type="text"
-                      name="titulo"
-                      value={tituloQuiz}
-                      onChange={handleChange}
-                      className={
-                        tituloQuizValido && tituloQuizFormatoValido
-                        ? 'input-titulo-criacao-quiz'
-                        : 'input-titulo-criacao-quiz erro'           
-                      }
-                      placeholder="Digite um título para o quiz"
-                      />
-                      {tituloQuizValido ? null : <div className="error-message-titulo-quiz">O campo deve ser preenchido.</div>}
-                      {tituloQuizFormatoValido ? null : <div className="error-message-titulo-quiz">O usuário deve conter acima de 4 caracteres.</div>}
-                    </div>
-                    
-                  </div>
-                  <div className="categoria-quiz-criacao">
-                    <span>Categoria: </span>
-                    <Combobox
-                      options={categorias} 
-                      preselectedValue={categorias[0]}
-                      classNameSelect="categoria-combobox-criacao"
-                      classNameDiv="categoria-combobox-div-criacao"
-                      onChange={handleCategoriaChange}
+                etapaAtual === 1 && 
+                <div className="etapa-um-wrapper">
+                  <h2>Criar</h2>
+                  {
+                    loading ? 
+                    <div className="local-spinner"><span className="spinner"></span></div> : 
+                    <FormularioCriacaoQuiz
+                      categorias={categorias}
+                      tituloQuiz={tituloQuiz}
+                      onTituloQuizSet={handleTituloQuiz}
+                      numeroPerguntasQuiz={numeroPerguntasQuiz}
+                      onNumeroPerguntasQuizSet={handleNumeroPerguntasQuiz}
+                      onCategoriaQuizSet={handleCategoriaQuiz}
+                      onDificuldadeQuizSet={handleDificuldadeQuiz}
+                      onSubmitCapaQuiz={handleSubmitCapaQuiz}
                     />
+                  }
                   </div>
-                  <div className="dificuldade-quiz-criacao">
-                    <span>Dificuldade: </span>
-                    <div className="tooltip-wrapper">
-                      <Combobox
-                        options={['Fácil', 'Médio', 'Difícil']} 
-                        preselectedValue="Fácil"
-                        classNameSelect="dificuldade-combobox-criacao"
-                        classNameDiv="dificuldade-combobox-div-criacao"
-                        onChange={handleDificuldadeChange}
+                }  
+                {
+                  etapaAtual > 1 &&
+                  <div className="pergunta">
+                    {
+                      perguntas.length + 1 <= numeroPerguntasQuiz ?
+                      <h2>Pergunta {perguntas.length + 1}</h2> : null
+                    }
+                    {
+                      loading ? 
+                      <div className="local-spinner"><span className="spinner"></span></div> :
+                      <FormularioPerguntaCriacaoQuiz
+                        respostas={respostas}
+                        perguntaConteudo={perguntaConteudo}
+                        respostaA={respostaA}
+                        onRespostaAQuizSet={handleRespostaAQuiz}
+                        respostaB={respostaB}
+                        onRespostaBQuizSet={handleRespostaBQuiz}
+                        respostaC={respostaC}
+                        onRespostaCQuizSet={handleRespostaCQuiz}
+                        respostaD={respostaD}
+                        onRespostaDQuizSet={handleRespostaDQuiz}
+                        respostaCorreta={respostaCorreta}
+                        onPerguntaConteudoQuizSet={handlePerguntaConteudoQuiz}
+                        onRespostaCorretaQuizSet={handleRespostaCorretaQuiz}
+                        onSubmitPerguntaQuiz={handleSubmitPerguntaQuiz}
                       />
-                      <a data-tooltip-id="tooltip-numero-perguntas" 
-                      data-tooltip-html="Pontos por questão:<br/>Difícil: 10 pontos.<br/>Médio: 7 pontos.<br/>Fácil: 3 pontos." data-tooltip-place="right" href="#tooltip-numero-perguntas">
-                          <i className="material-icons help-icon" onClick={toggleSidebar}>
-                            help
-                          </i>
-                      </a>
-                      <Tooltip id="tooltip-numero-perguntas" /> 
-                    </div>
-                  </div>
-                  <div className="numero-perguntas-quiz-criacao">
-                    <span>Nº Perguntas:</span>
-                    <div className="tooltip-wrapper">
-                      <input
-                        type="number"
-                        name="numeroPerguntas"
-                        value={numeroPerguntasQuiz}
-                        onChange={handleChange}
-                        className="input-numero-perguntas-criacao-quiz"
-                        placeholder="Nº de perguntas"
-                        onKeyPress={handleKeyPress}
-                        min={1}
-                        max={10}
-                      />
-                      <a data-tooltip-id="tooltip-numero-perguntas" data-tooltip-content="O número máximo de perguntas é 10" data-tooltip-place="right" href="#tooltip-numero-perguntas">
-                          <i className="material-icons help-icon" onClick={toggleSidebar}>
-                            help
-                          </i>
-                      </a>
-                      <Tooltip id="tooltip-numero-perguntas" /> 
-                    </div>   
-                  </div>
-                  <div className="botao-wrapper">
-                    <BotaoTematico {...botaoPropsSalvarEcontinuar}></BotaoTematico>
-                  </div>
-                </form>
-              }
-  
+                    }
+                  </div>      
+                }
             </div>
           }
+        </div> 
+      }
+      {
+        ehModoEdicao && 
+        <div className={`conteudo-principal ${!isSidebarOpen ? 'open-bar' : ''}`}> 
+          <div className="criacao-quiz-wrapper">
+            {
+              etapaAtual === 1 && 
+              <div className="etapa-um-wrapper">
+                <h2>Editar</h2>
+                {
+                  loading ? 
+                  <div className="local-spinner"><span className="spinner"></span></div> : 
+                  <FormularioEdicaoQuiz
+                    tituloQuizEdicao={tituloQuizEdicao}
+                    numeroPerguntasQuizEdicao={numeroPerguntasQuizEdicao}
+                    categoriaEdicao={categoriaEdicao}
+                    dificuldadeEdicao={dificuldadeEdicao}
+                    onTituloQuizEdicaoSet={handleTituloQuizEdicao}
+                    onSubmitCapaQuizEdicao={handleSubmitCapaQuizEdicao}
+                  />
+                }
+                </div>
+              }  
+              {
+                etapaAtual > 1 &&
+                <div className="pergunta">
+                  <h2>Pergunta {indicePerguntaAtual + 1}</h2>
+                  {
+                    loading ? 
+                    <div className="local-spinner"><span className="spinner"></span></div> :
+                    <FormularioPerguntaEdicaoQuiz
+                      respostas={respostas}
+                      perguntasEdicao={perguntasEdicao}
+                      indicePerguntaAtual={indicePerguntaAtual}
+                      onPerguntasEdicaoSet={handlePerguntasEdicaoQuiz}
+                      onSubmitPerguntaQuizEdicao={handleSubmitPerguntaQuizEdicao}
+                    />
+                 }
+                </div>      
+              }
+          </div>
         </div> 
       }
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './combobox.css';
 
-const Combobox = ({ options, preselectedValue, placeholder = "Escolha uma opção...", classNameSelect, classNameDiv, onChange }) => {
+const Combobox = ({ options, preselectedValue, placeholder = "Escolha uma opção...", classNameSelect, classNameDiv, onChange, disabled }) => {
   const [selectedValue, setSelectedValue] = useState(preselectedValue || '');
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Combobox = ({ options, preselectedValue, placeholder = "Escolha uma opçã
         value={selectedValue}
         onChange={handleSelectChange}
         className={classNameSelect}
+        disabled={disabled}
       >
         <option value="" disabled hidden>
           {placeholder}

@@ -264,7 +264,7 @@ function FormularioEdicaoConta() {
               </a>
               <Tooltip id="my-tooltip" className="tooltip-edicao" />
             </div>
-            <div class="password-container-edicao-conta">
+            <div className="password-container-edicao-conta">
                 <input
                     type={mostrarSenha ? "text" : "password"}
                     name="senha"
@@ -281,7 +281,7 @@ function FormularioEdicaoConta() {
 
         <div className="repetir-senha-edicao-conta">
             <h3 className="label-repetir-senha-edicao-conta">Repetir Senha</h3>
-            <div class="password-container-edicao-conta">
+            <div className="password-container-edicao-conta">
                 <input
                     type={mostrarSenhaRepetida ? "text" : "password"}
                     name="senhaRepetida"

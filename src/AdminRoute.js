@@ -21,7 +21,7 @@ const AdminRoute = ({Component}) => {
         } catch (error) {
           console.error('Erro ao buscar dados do usuário:', error);
         } finally {
-          setLoading(false); // Define o estado de carregamento como false, indicando que os dados foram carregados
+          setLoading(false); 
         }
       };
 
@@ -32,7 +32,7 @@ const AdminRoute = ({Component}) => {
             buscarDadosUsuario(user.displayName);
           } else {
             setUser(false);
-            setLoading(false); // Se não houver usuário, define o estado de carregamento como false
+            setLoading(false);
           }
         });
     
@@ -43,10 +43,10 @@ const AdminRoute = ({Component}) => {
 
     if (loading) {
         return <div className="overlay">
-            <div class="loader">
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <div class="ball"></div>
+            <div className="loader">
+                <div className="ball"></div>
+                <div className="ball"></div>
+                <div className="ball"></div>
                 <span>Loading...</span>
             </div>
         </div>

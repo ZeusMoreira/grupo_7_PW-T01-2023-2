@@ -1,0 +1,177 @@
+.botao-wrapper-respostas {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.resposta-correta-combobox-criacao {
+    width: 100% !important;
+    background-color: transparent;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.resposta-correta-combobox-div-criacao {
+    width: 20% !important;
+}
+
+.resposta-correta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.resposta-correta span{
+    font-weight: bold;
+}
+
+.error-message-pergunta{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.input-resposta-d {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.input-resposta-d.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.input-resposta-validation {
+    display: flex;
+    flex-direction: column;
+}
+
+.resposta-d-text {
+    font-weight: bold;
+}
+
+.resposta-d {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-resposta-c.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.input-resposta-c {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.resposta-c {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-c-text {
+    font-weight: bold;
+}
+
+.wrapper-c-d {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.input-resposta-b.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.input-resposta-b {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.resposta-b {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-b-text {
+    font-weight: bold;
+}
+
+.input-resposta-a {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.input-resposta-a.erro {
+    border: none;
+    outline: 1px solid red;
+}
+ 
+.resposta-a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-a-text {
+    font-weight: bold;
+}
+
+.respostas {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.wrapper-a-b {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.textarea-estilizado {
+    width: 100%;
+    height: 150px;
+    resize: none; /* Impede o redimensionamento */
+    text-align: justify; /* Centraliza o texto */
+    padding: 20px; /* Adiciona algum preenchimento para melhor aparência */
+    box-sizing: border-box; /* Garante que o preenchimento não aumente as dimensões */
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 12px;
+    border: 1px solid;
+}
+
+.textarea-estilizado.erro {
+    border: none;
+    outline: 1px solid red;
+}
+
+.formulario-pergunta {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
