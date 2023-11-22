@@ -1,4 +1,4 @@
-# Aplicação Web Quizzes
+# Aplicação Web: Quizzes
 
 Desenvolvida por: Zeus Moreira
 
