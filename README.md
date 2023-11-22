@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Aplicação Web Quizzes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Desenvolvida por: Zeus Moreira
 
-## Available Scripts
+## Informações de desenvolvimento
 
-In the project directory, you can run:
+Essa aplicação foi desenvolvida utilizando React e CSS Puro para a parte de frontend.
+
+A parte do backend foi utilizada como serviço, com o uso do Firebase, onde possui o Authentication para gerenciamento de usuários, Cloud Firestore para armazenarmos dados pertinentes da aplicação e também Storage para armazenamento de mídia.
+
+## Informações de funcionamento do sistema
+
+Essa aplicação é uma plataforma de resposta de Quizzes, onde temos 2 perfis de usuário:
+
+Usuário Comum: Possui acesso a criação, edição e visualização de sua própria conta. Detem as funcionalidade públicas da aplicação, onde tem acesso a resposta de Quizzes e então ter a possibilidade de acumular pontos e aumentar o seu Score, consegue também acessar o Ranking para ver sua colocação e a de outros usuários.
+
+Administrador: Possui as mesmas possibilidades do usuário comum, mas tem o privilégio de gerenciar os Quizzes da aplicação, é importante ressaltar que usuário administrador é pré-determinado e não forma de cadastrar usuários administradores.
+
+## Funcionalidades
+
+Login: Formulário que possui campos validados e interativos com o usuário e permite o acesso a aplicação com uma conta ja criada anteriormente pelo próprio usuário, caso não se lembre da senha há a possibilidade de recuperação utilizando o email de cadastro.
+
+Registro: Formulário que possui campos validados e interativos com o usuário e possui algumas regras para a criação de uma conta, como o limite máximo de 16 dígitos para o nome de usuário, senhas coincidentes com mais de 6 caracteres e o email com formato válido.
+
+HomePage: O guia do usuário, nela ele possui acesso a jogar quizzes apertando no botão Jogar, onde será redirecionado para seleção de quizzes geral ou selecionando uma categoria popular que também redireciona para seleção de quizzes, porém filtrado. Pode também acessar o ranking apertando em "Acesse nosso ranking" e editar e visualizar seus dados acessando a opção "Minha Conta" no header da aplicação, onde também há a opção de Sair da aplicação.
+
+RankingPage: Onde o usuário tem acesso a um ranking TOP 50 atualizado da pontuação dele e de outros usuários, caso recarregue a página e algum outro usuário tenha ganhado mais pontos respondendo quizzes o ranking é atualizado para ele também, a posição do usuário logado aparece na parte de baixo do ranking.
+
+MinhaContaPage: É dividida em 2 abas para o usuário comum e em 3 para usuário administrador.
+
+    - Editar Perfil (ambos usuários): Formulário onde é possível alterar o nome de usuário e senha, as possibilidades são de editar apenas o usuário, usuário e senha ou apenas senha.
+    - Gerenciar Quizzes (apenas administrador): Tela que possui um menu lateral que lista os quizzes e pode edita-los ou exclui-los, há também a possibilidade de criar novos quizzes.
+    - Meu Perfil (ambos usuários): Mostra dados básicos do usuário como nome, categoria favorita, score atual e da acesso ao ranking.
+
+JogarPage: Onde há uma tela que possui um menu lateral com 2 selects onde é possível filtrar os quizzes por Categoria e Dificuldade, selecionar o quiz desejado e responder, no final gerando uma pontuação e agregando ao usuário.
+
+## Instalação da aplicação
+
+Não tem muitos passos mas aqui estão:
+
+### `npm install`
+
+Será necessário para instalar as dependencias do projeto e possuir o comportamento correto da aplicação.
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tendo realizado o npm install o próximo será o npm start que startará o sistema em forma de desenvolvimento.

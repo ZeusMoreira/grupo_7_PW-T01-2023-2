@@ -2,10 +2,13 @@ import './style.css';
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 
 export const MeuPerfilPage = () => {
+  const navigate = useNavigate()
   const [dadosUsuario, setDadosUsuario] = useState({})
+  // eslint-disable-next-line
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [loading, setLoading] = useState(true);
   const auth = getAuth()
@@ -25,7 +28,6 @@ export const MeuPerfilPage = () => {
     }
   };
 
-  
   useEffect(() => {
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
@@ -44,7 +46,12 @@ export const MeuPerfilPage = () => {
         window.removeEventListener('resize', handleResize);
         unsubscribe();
     };
+    // eslint-disable-next-line
   }, []);
+
+  const handleClickAcessarRanking = () => {
+    navigate("/ranking")
+  }
 
   return (
     <div className="container-meu-perfil">
@@ -56,9 +63,11 @@ export const MeuPerfilPage = () => {
                         loading ? <div className="local-spinner-profile"><span className="spinner"></span></div> :
                         <div className="dados-usuario">
                             <span>Usuário:<span className="info-user"> {dadosUsuario.username}</span></span>
-                            <span>Categoria favorita:<span className="info-user"> {dadosUsuario.categoria ? dadosUsuario.categoria : 'Nenhuma'}</span></span>
+                            <span>Categoria favorita:<span className="info-user"> {dadosUsuario.categoriaFavorita ? dadosUsuario.categoriaFavorita : 'Nenhuma'}</span></span>
                             <span>Score:<span className="info-user"> {dadosUsuario.score}</span></span>
-                            <span>Posição no ranking:<span className="info-user"> #{dadosUsuario.posicao}</span></span> 
+                            <span>Posição no ranking:
+                              <span className="info-rank" onClick={handleClickAcessarRanking}>Acessar ranking</span>
+                            </span> 
                         </div>
                     }
                 </div>

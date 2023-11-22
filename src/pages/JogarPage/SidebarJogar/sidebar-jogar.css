@@ -1,0 +1,175 @@
+.a-tooltip {
+    height: 30px;
+    display: inline-block;
+}
+
+.listagem-quizzes-jogar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.lista-quiz-jogar {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-quiz-jogar li {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.lista-quiz-jogar li:hover {
+    background-color: white;
+    color: #393434;
+}
+
+.titulo-categoria-quiz-jogar {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.titulo-text-quiz-jogar {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.quiz-selecionado-jogar {
+    background-color: white;
+    color: #393434 !important;
+}
+
+.filtro-text {
+    color: white;
+    font-weight: bold;
+}
+
+.filtro-quizzes {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-self: center;
+}
+
+.categoria-combobox-jogar{
+    width: 100% !important;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #6b6060;
+}
+
+.categoria-combobox-div-jogar {
+    margin-top: 5px;
+    width: 100% !important;
+}
+
+.dificuldade-combobox-jogar{
+    width: 100% !important;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #6b6060;
+}
+
+.dificuldade-combobox-div-jogar {
+    margin-top: 5px;
+    width: 100% !important;
+}
+
+.texto-sem-elemento {
+    color: white;
+    width: 70%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-sem-elemento span {
+    text-align: center;
+    font-weight: bold;
+}
+
+.listagem-quizzes-jogar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1em 1em transparent;
+    border: solid 3px transparent;
+    background-color: transparent;
+}
+
+.listagem-quizzes-jogar::-webkit-scrollbar {
+    width: 1em;
+    background-color: transparent;
+}
+
+.listagem-quizzes-jogar::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 1em 1em #696969;
+    border: solid 3px transparent;
+    border-radius: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .listagem-quizzes-jogar {
+        display: flex;
+        align-items: center;
+        flex-direction: row !important;
+        overflow-x: auto;
+        height: auto !important;
+    }
+
+    .lista-quiz-jogar {
+        display: flex;
+        width: auto;
+        height: auto;
+    }
+
+    .lista-quiz-jogar li {
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 0px solid white;
+        width: 33vw !important;
+    }
+    
+    .lista-quiz-jogar li:nth-child(1){
+        border-top: 0px solid white;
+    }
+    
+    .lista-quiz-jogar li:hover {
+        background-color: white;
+        color: #393434;
+        border: none;
+    }
+    
+    .titulo-categoria-quiz-jogar {
+        margin-left: 20px;
+    }
+
+    .quiz-selecionado-jogar {
+        background-color: white;
+        color: #393434 !important;
+        border-bottom: 0px solid #393434 !important;
+        border-top: 0px solid #393434 !important;
+    }
+
+    .wrapper-icon {
+        margin-right: 20px;
+    }
+    
+}

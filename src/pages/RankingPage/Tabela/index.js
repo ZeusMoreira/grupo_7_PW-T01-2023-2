@@ -19,13 +19,14 @@ function Tabela({ columns, data }) {
     useEffect(() => {
         const tableBody = document.querySelector('tbody')
         const container = document.querySelector('.cont')
+
         if(isMobile){
             tableBody.style.width = 'auto'
             container.style.width = 'auto'
             container.style.margin = '0 1em 0 1em'
             container.style.padding= '0'
         } else {
-            tableBody.style.width = 'calc(100% + 1em)'
+            tableBody.style.width = tableBody.scrollHeight > tableBody.clientHeight ? 'calc(100% + 1em)' : '100%'
             container.style.width = 'calc(100% - 2.5em)'
             container.style.padding = 0
         }

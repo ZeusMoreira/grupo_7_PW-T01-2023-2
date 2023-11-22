@@ -61,6 +61,17 @@
     justify-content: center;
 }
 
+.info-rank {
+    color: #b619b9 !important;
+    cursor: pointer;
+    margin-left: 10px;
+    
+}
+
+.info-rank:hover {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
     .visualizacao-conta {
         width: 100%;

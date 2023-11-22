@@ -7,9 +7,10 @@ import { collection, getDocs, getFirestore, orderBy, query, where } from "fireba
 
 export const RankingPage = () => {
     const navigate = useNavigate();
-    const [usuarioAtual, setUsuarioAtual] = useState({});
+    const [usuarioAtual, setUsuarioAtual] = useState(null);
     const [data, setData] = useState([])
     const [requisicaoEmAndamento, setRequisicaoEmAndamento] = useState(false)
+    const [posicaoUsuarioAtual, setPosicaoUsuarioAtual] = useState(null)
 
     useEffect(() => {
         const auth = getAuth();
@@ -23,21 +24,30 @@ export const RankingPage = () => {
             } 
         });
         setRequisicaoEmAndamento(false)
-        buscarDadosRanking();
         return () => {
             unsubscribe();
         };
     }, []);
 
+    useEffect(() => {
+        if(usuarioAtual){
+            buscarDadosRanking()
+        }
+    }, [usuarioAtual])
+
     const buscarDadosRanking = async () => {
         setRequisicaoEmAndamento(true)
         const db = getFirestore();
         const usersCollection = collection(db, 'users');
-        const querySnapshot = await getDocs(query(usersCollection, orderBy('posicao', 'asc')));
+        const querySnapshot = await getDocs(query(usersCollection, orderBy('score', 'desc')));
         let topUsers = []
-        querySnapshot.forEach((doc) => {
-            const posicaoComSimbolo = doc.data().posicao + "º"; // Adicione o "º" aqui
-            topUsers.push({ ...doc.data(), posicao: posicaoComSimbolo });
+        querySnapshot.docs.forEach((doc, index) => {
+            const posicaoComSimbolo = (index+1) + "º"; 
+            const userData = { ...doc.data(), posicao: posicaoComSimbolo };
+            topUsers.push(userData);
+            if (usuarioAtual && usuarioAtual.uid === userData.uid) {
+                setPosicaoUsuarioAtual(index + 1);
+            }
         })
         topUsers = topUsers.slice(0, 50);
         setData(topUsers)
@@ -78,7 +88,7 @@ export const RankingPage = () => {
                 {!requisicaoEmAndamento &&
                     <div className="ranking-atual">
                         <span>
-                            Seu ranking atual: <span className="ranking-atual-texto-numero">{` #${usuarioAtual.posicao}`}</span>
+                            Seu ranking atual: <span className="ranking-atual-texto-numero">{` #${posicaoUsuarioAtual}`}</span>
                         </span>
                     </div>
                 }

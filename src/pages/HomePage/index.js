@@ -89,6 +89,22 @@ export const HomePage = () => {
         navigate("/ranking")
     }
 
+    const handleJogarClick = () => {
+        navigate("/jogar")
+    }
+
+    const handleCategoriaTopUm = () => {
+        navigate(`/jogar/1`)
+    }
+
+    const handleCategoriaTopDois = () => {
+        navigate(`/jogar/2`)
+    }
+
+    const handleCategoriaTopTres = () => {
+        navigate(`/jogar/3`)
+    }
+
     const iconStyle = {
         fontSize: '35px', 
         padding: '0',
@@ -175,13 +191,16 @@ export const HomePage = () => {
             <div className="categorias-populares">
                 <span>Categorias populares</span>
                 <div className="botoes-categoria">
-                    <BotaoCategoria {...botaoCategoriaTopUm}></BotaoCategoria>
-                    <BotaoCategoria {...botaoCategoriaTopDois}></BotaoCategoria>
-                    <BotaoCategoria {...botaoCategoriaTopTres}></BotaoCategoria>
+                    <BotaoCategoria {...botaoCategoriaTopUm} onClick={handleCategoriaTopUm}>
+
+                    handleCategoriaTopDois
+                    </BotaoCategoria>
+                    <BotaoCategoria {...botaoCategoriaTopDois} onClick={handleCategoriaTopDois}></BotaoCategoria>
+                    <BotaoCategoria {...botaoCategoriaTopTres} onClick={handleCategoriaTopTres}></BotaoCategoria>
                 </div>
             </div>
             <div className="container-botao-jogar">
-                <BotaoTematico className="botao-jogar" {...botaoJogarProps}></BotaoTematico>
+                <BotaoTematico className="botao-jogar" onClick={handleJogarClick} {...botaoJogarProps}></BotaoTematico>
             </div>
         </div>
     );

@@ -1,0 +1,254 @@
+.intro-jogar {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(57, 52, 52, 0.7);
+}
+
+.etapa-um-wrapper-jogar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.etapa-um-wrapper-jogar h2 {
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 6%;
+    color: black;  
+}
+
+.jogar-quiz-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.pergunta-wrapper-jogar {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.pergunta {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.textarea-estilizado-jogar {
+    width: 100%;
+    height: 175px;
+    resize: none; /* Impede o redimensionamento */
+    font-weight: 500;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-top: 10px;
+    background-color: transparent;
+}
+
+.textarea-estilizado-jogar:disabled {
+    color: black; /* Altere para a cor desejada quando desabilitado */
+}
+
+textarea::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1em 1em transparent;
+    border: solid 3px transparent;
+    background-color: transparent;
+}
+
+textarea::-webkit-scrollbar {
+    width: 1em;
+    background-color: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 1em 1em #A8A8A8;
+    border: solid 3px transparent;
+    border-radius: 12px;
+}
+
+.respostas-jogar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.wrapper-a-b-jogar {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.resposta-a-jogar { 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-a-jogar-text {
+    font-weight: bold;
+}
+
+.input-resposta-a-jogar {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-resposta-a-jogar:disabled {
+    color: black;
+}
+
+.resposta-b-jogar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-b-jogar-text {
+    font-weight: bold;
+}
+
+.input-resposta-b-jogar {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-resposta-b-jogar:disabled {
+    color: black;
+}
+
+.resposta-c-jogar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-c-jogar-text {
+    font-weight: bold;
+}
+
+.input-resposta-c-jogar {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-resposta-c-jogar:disabled {
+    color: black;
+}
+
+.resposta-d-jogar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resposta-d-jogar-text {
+    font-weight: bold;
+}
+
+.input-resposta-d-jogar {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-resposta-d-jogar:disabled {
+    color: black;
+}
+
+.resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    height: 100%;
+    margin: 5% 0;
+}
+
+.icon-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #39B54A;
+}
+
+.task-alt-icon {
+    font-size: 180px;
+}
+
+.valor-resultado {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text-resultado {
+    font-weight: bold;
+    text-align: center;
+    font-size: 22px;
+}
+
+.botao-retornar {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+
+.resposta-correta-jogar {
+    background-color: #00D816; /* Cor verde para resposta correta */
+    color: white !important;
+    border: 1px solid #00D816;
+    outline: 1px solid #00D816;
+}
+  
+.resposta-incorreta-jogar {
+    background-color: #FD0C0C; /* Cor vermelha para resposta incorreta */
+    color: white !important;
+    border: 1px solid #FD0C0C;
+    outline: 1px solid #FD0C0C;
+}
+
+.ver-mais {
+    color: #b619b9;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.ver-mais:hover {
+    text-decoration: underline;
+}

@@ -11,6 +11,7 @@ import EditarPerfilPage from "./pages/MinhaContaPage/EditarPerfilPage";
 import AdminRoute from "./AdminRoute";
 import GerenciarQuizzesPage from "./pages/MinhaContaPage/GerenciarQuizzesPage";
 import MeuPerfilPage from "./pages/MinhaContaPage/MeuPerfilPage";
+import JogarPage from "./pages/JogarPage";
 
 function RoutesApp() {
     return (
@@ -26,6 +27,8 @@ function RoutesApp() {
                     <Route path="gerenciar-quizzes" element={<AdminRoute Component={GerenciarQuizzesPage}/>} />
                     <Route path="meu-perfil" element={<PrivateRoute Component={MeuPerfilPage}/>} />
                 </Route>
+                <Route path="/jogar/:parametro" element={<PrivateRoute Component={JogarPage} />}></Route>
+                <Route path="/jogar" element={<PrivateRoute Component={JogarPage} />}></Route>
                 <Route path="*" element={<Unknown/>}></Route>
             </Routes>
         </BrowserRouter>

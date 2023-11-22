@@ -1,0 +1,172 @@
+.jogar-content {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.sidebar-jogar {
+    width: 0;
+    flex-grow: 1;
+    background-color: #393434; 
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.jogar-content.open .sidebar-jogar {
+    flex-grow: 1;
+    width: 20vw;
+}
+
+.jogar-content.open .content-jogar {  
+    width: calc(100vw - 20vw);
+    display: flex;
+}
+
+.content-jogar {
+    transition: width 0.5s;
+    display: flex;
+    width: 100vw;
+}
+
+.header-jogar {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    background-color: #393434;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.logo-container-jogar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.logo-jogar {
+    text-transform: capitalize;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.logo-jogar span {
+    user-select: none;
+    text-transform: uppercase;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 4px;
+    padding: 5px;
+    color: #393434;
+} 
+
+.container-jogar-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+} 
+
+.conteudo-principal-jogar {
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    height: 620px;
+    margin-left: 10%;
+    margin-top: 4vh;
+    margin-bottom: 10vh;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.abrir-criar-jogar {
+    margin-top: 10px;
+    margin-left: 5%;
+    width: 90%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 250px;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 870px){
+    .conteudo-principal-jogar {
+        height: 650px;
+    }
+}
+
+  
+@media screen and (max-width: 768px) {
+    .header-jogar {
+        height: 100px;
+    } 
+
+    .sidebar-jogar {
+        width: 100%;
+        height: 0;
+        flex-direction: column;
+    }
+
+    .abrir-criar-jogar {
+        height: auto;
+        margin-top: 25px;
+        flex-direction: row;
+    }
+
+    .jogar-content {
+        flex-direction: column;
+    }
+
+    .conteudo-principal-jogar.open-bar {
+        margin-left: 5%;
+    }
+
+    .jogar-content.open .sidebar-jogar {
+        flex-grow: 0;
+        width: 100vw;
+        height: auto;
+        gap: 20px;
+    }
+
+    .menu-icone-fechar {
+        margin-bottom: 0;
+    }
+
+    .jogar-content.open .content-jogar {  
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .conteudo-principal-jogar {
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .conteudo-principal-jogar.open-bar {  
+        width: 80%;
+        margin-left: 5%;
+        margin-top: 4vh;
+        margin-bottom: 10vh;   
+        border-radius: 12px;
+    }
+}

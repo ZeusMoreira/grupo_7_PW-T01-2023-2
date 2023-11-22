@@ -149,15 +149,6 @@ function FormularioRegistro() {
       return;
     }
 
-    querySnapshot = await getDocs(query(usersCollection, orderBy('posicao', 'asc')));
-    let posicaoRanking = 1
-
-    if (!querySnapshot.empty) {
-      const lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
-      const posicao = lastDocument.data().posicao;
-      posicaoRanking = posicao + 1
-    }
-  
     setRequisicaoEmAndamento(true)
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
@@ -170,7 +161,6 @@ function FormularioRegistro() {
       const userData = {
         username: usuario,
         score: 0,
-        posicao: posicaoRanking,
         categoriaFavorita: null,
         tipo: "comum",
         uid: user.uid
