@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import Combobox from '../../MinhaContaPage/GerenciarQuizzesPage/components/Content/components/Autocomplete.js';
 import { useNavigate, useParams } from 'react-router-dom';
 import './sidebar-jogar.css'
+import { Tooltip } from 'react-tooltip';
 
 const SidebarJogar = ({toggleSidebar, onQuizSelect}) => {
   const {parametro} = useParams()
@@ -148,11 +149,26 @@ const SidebarJogar = ({toggleSidebar, onQuizSelect}) => {
   return (
     <div className="sidebar-jogar">
         <div className="abrir-criar-jogar">
-            <div className="menu-icone-fechar">
-                <i className="material-icons close-icon" onClick={toggleSidebar}>
-                    menu
-                </i>
-            </div>  
+          {
+                (quizSelecionado === null) && 
+                <div className="menu-icone-fechar">
+                   <a data-tooltip-id="tooltip-quiz-criacao" data-tooltip-content="O fechamento do menu só está disponível com algum quiz selecionado." data-tooltip-place="right" href="#tooltip-quiz-criacao" className="a-tooltip">
+                        <i className="material-icons close-icon">
+                          menu
+                        </i>
+                    </a>
+                    <Tooltip id="tooltip-quiz-criacao" /> 
+                </div>  
+            }
+            {
+                (quizSelecionado !== null) &&
+                <div className="menu-icone-fechar">
+                    <i className="material-icons close-icon" onClick={toggleSidebar}>
+                        menu
+                    </i>
+                </div> 
+            }
+             
             <div className="filtro-quizzes">
                 <span className="filtro-text">Filtrar por:</span>
                 <div>
