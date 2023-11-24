@@ -39,11 +39,16 @@ JogarPage: Onde há uma tela que possui um menu lateral com 2 selects onde é po
 
 ## Instalação da aplicação
 
-Não tem muitos passos mas aqui estão:
+Não tem muitos passos, mas aqui estão:
+
+### `git clone`
+Após criar um projeto na sua IDE, basta: 
+rodar: git clone https://github.com/ZeusMoreira/grupo_7_PW-T01-2023-2.git
+entrar: na pasta grupo_7_PW-T01-2023-2
 
 ### `npm install`
 
-Será necessário para instalar as dependencias do projeto e possuir o comportamento correto da aplicação.
+Será necessário para instalar as dependencias do projeto para a aplicação possuir o comportamento correto de componentes.
 
 ### `npm start`
 
