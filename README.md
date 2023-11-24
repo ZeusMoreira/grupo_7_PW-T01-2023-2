@@ -15,9 +15,9 @@ Essa aplicação é uma plataforma de resposta de Quizzes, onde temos 2 perfis d
 Usuário Comum: Possui acesso a criação, edição e visualização de sua própria conta. Detem as funcionalidade públicas da aplicação, onde tem acesso a resposta de Quizzes e então ter a possibilidade de acumular pontos e aumentar o seu Score, consegue também acessar o Ranking para ver sua colocação e a de outros usuários.
 
 Administrador: Possui as mesmas possibilidades do usuário comum, mas tem o privilégio de gerenciar os Quizzes da aplicação, é importante ressaltar que usuário administrador é pré-determinado e não forma de cadastrar usuários administradores.
-Credenciais Administrador: 
-Usuário: admin@quizzes.com
-Senha: senha123
+- Credenciais Administrador: 
+    - Usuário: admin@quizzes.com
+    - Senha: senha123
 
 ## Funcionalidades
 
