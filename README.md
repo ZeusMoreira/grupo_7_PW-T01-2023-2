@@ -15,6 +15,9 @@ Essa aplicação é uma plataforma de resposta de Quizzes, onde temos 2 perfis d
 Usuário Comum: Possui acesso a criação, edição e visualização de sua própria conta. Detem as funcionalidade públicas da aplicação, onde tem acesso a resposta de Quizzes e então ter a possibilidade de acumular pontos e aumentar o seu Score, consegue também acessar o Ranking para ver sua colocação e a de outros usuários.
 
 Administrador: Possui as mesmas possibilidades do usuário comum, mas tem o privilégio de gerenciar os Quizzes da aplicação, é importante ressaltar que usuário administrador é pré-determinado e não forma de cadastrar usuários administradores.
+- Credenciais Administrador: 
+    - Usuário: admin@quizzes.com
+    - Senha: senha123
 
 ## Funcionalidades
 
@@ -36,11 +39,16 @@ JogarPage: Onde há uma tela que possui um menu lateral com 2 selects onde é po
 
 ## Instalação da aplicação
 
-Não tem muitos passos mas aqui estão:
+Não tem muitos passos, mas aqui estão:
+
+### `git clone`
+Após criar um projeto na sua IDE, basta: 
+rodar: git clone https://github.com/ZeusMoreira/grupo_7_PW-T01-2023-2.git
+entrar: na pasta grupo_7_PW-T01-2023-2
 
 ### `npm install`
 
-Será necessário para instalar as dependencias do projeto e possuir o comportamento correto da aplicação.
+Será necessário para instalar as dependencias do projeto para a aplicação possuir o comportamento correto de componentes.
 
 ### `npm start`
 
