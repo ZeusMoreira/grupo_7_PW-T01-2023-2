@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import "./PrivateRoute.css"
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const AdminRoute = ({Component}) => {
     const [user, setUser] = useState(null);
@@ -10,16 +11,16 @@ const AdminRoute = ({Component}) => {
     const [tipoUser, setTipoUser] = useState(null)
     const auth = getAuth()
 
-    const buscarDadosUsuario = async (username) => {
+    const buscarDadosUsuario = async (uid) => {
         try {
           const db = getFirestore();
           const usersCollection = collection(db, 'users');
-          const querySnapshot = await getDocs(query(usersCollection, where('username', '==', username)));
+          const querySnapshot = await getDocs(query(usersCollection, where('uid', '==', uid)));
           querySnapshot.forEach((doc) => {
             setTipoUser(doc.data().tipo);
           });
         } catch (error) {
-          console.error('Erro ao buscar dados do usuário:', error);
+          toast.error(`Erro ao buscar dados do usuário: ${error}`)
         } finally {
           setLoading(false); 
         }
@@ -29,7 +30,7 @@ const AdminRoute = ({Component}) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
             setUser(true);
-            buscarDadosUsuario(user.displayName);
+            buscarDadosUsuario(user.uid);
           } else {
             setUser(false);
             setLoading(false);

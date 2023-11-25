@@ -21,15 +21,16 @@
     left: calc(50vw - 75px);
 }
 
-
 #menu-options-home {
+    width: 200px;
     display: flex;
     flex-direction: column;
     gap: 5px;
-    align-items: center;
     left: calc(85vw - 150px);
     z-index: 1;
     position: relative;
+    user-select: none;
+    align-items: center;
 }
 
 .overlay-home {
@@ -44,7 +45,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 .logo-home {
     text-transform: capitalize;
@@ -76,10 +76,11 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    user-select: none;
 }
 
 #container-menu {
-    width: 200px;
+    width: 210px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -87,12 +88,20 @@
     display: none; /* Inicialmente oculto */
   }
 
-  #container-menu.visible {
+#container-menu.visible {
     display: block;
-  }
+}
+
+.icon-drop-up {
+    padding-top: 5px !important;
+}
+
+.icon-drop-down {
+    padding-top: 5px !important;
+}
 
 .user-text-home {
-    margin-left: 28.75px;
+    width: 200px;
     user-select: none;
     color: white;
     font-weight: bold;
@@ -100,6 +109,14 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+}
+
+.user-text-home span:first-child {
+    min-width: 0; /* para redefinir a largura mínima, se necessário */
+    overflow: hidden; /* para garantir que o texto não estique além do span */
+    white-space: nowrap; /* para evitar quebras de linha dentro do span */
+    text-overflow: ellipsis;
 }
 
 #balao-retangular-menu-home {
@@ -112,7 +129,7 @@
 }
 
 .telhado-menu-home {
-    margin-left: 60%;
+    margin-left: 167px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
@@ -201,6 +218,10 @@
     margin-bottom: 5vh;
 }
 
+.categorias-populares-title {
+    color: #393434;
+}
+
 .categorias-populares span {
     font-weight: bold;
     font-size: 26px;
@@ -273,7 +294,7 @@
     }  
 }
   
-@media screen and (max-width: 500px) and (min-height: 500px) {
+@media screen and (max-width: 550px) and (min-height: 500px) {
     .header-home {
         padding-top: 8vh;
         padding-bottom: 8vh;
@@ -285,7 +306,7 @@
     }
 
     #menu-options-home {
-        left: calc(50vw - 84px);
-        top: 6vh;
+        transform: translateX(-65%);
+        top: 7vh;
     }  
 }

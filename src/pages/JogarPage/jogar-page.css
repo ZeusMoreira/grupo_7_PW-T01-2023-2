@@ -9,7 +9,6 @@
     flex-grow: 1;
     background-color: #393434; 
     overflow-x: hidden;
-    transition: 0.5s;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -23,12 +22,15 @@
 .jogar-content.open .content-jogar {  
     width: calc(100vw - 20vw);
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content-jogar {
-    transition: width 0.5s;
     display: flex;
-    width: 100vw;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-jogar {
@@ -78,16 +80,14 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    height: 100vh;
 } 
 
 .conteudo-principal-jogar {
     padding: 0;
     margin: 0;
     width: 80%;
-    height: 620px;
-    margin-left: 10%;
-    margin-top: 4vh;
-    margin-bottom: 10vh;
+    height: 700px;
     border-radius: 12px;
     background-color: white;
 }
@@ -103,15 +103,8 @@
     height: 250px;
     justify-content: flex-start;
 }
-
-@media screen and (max-width: 870px){
-    .conteudo-principal-jogar {
-        height: 650px;
-    }
-}
-
   
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
     .header-jogar {
         height: 100px;
     } 
@@ -138,7 +131,7 @@
 
     .jogar-content.open .sidebar-jogar {
         flex-grow: 0;
-        width: 100vw;
+        width: 100%;
         height: auto;
         gap: 20px;
     }
@@ -153,9 +146,7 @@
         flex-direction: column;
         flex-grow: 1;
     }
-}
-
-@media screen and (max-width: 550px) {
+    
     .conteudo-principal-jogar {
         margin: 0;
         width: 100%;
@@ -163,10 +154,14 @@
     }
 
     .conteudo-principal-jogar.open-bar {  
-        width: 80%;
-        margin-left: 5%;
-        margin-top: 4vh;
-        margin-bottom: 10vh;   
-        border-radius: 12px;
+        width: 100vw;
+        margin-left: 0;
+        margin-top: 10px;
+        border-radius: 0;
+    }
+
+    .content-jogar {
+        justify-content: stretch;
+        align-items: stretch;
     }
 }

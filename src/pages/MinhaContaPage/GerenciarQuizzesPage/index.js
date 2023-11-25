@@ -30,6 +30,11 @@ export const GerenciarQuizzesPage = () => {
 
   return (
     <div className={`gerenciar-quiz-content ${isSidebarOpen ? 'open' : ''}`}>
+      {!isSidebarOpen && 
+        <i className="material-icons open-icon" onClick={toggleSidebar}>
+          menu
+        </i>
+      }
       <Sidebar 
         toggleSidebar={toggleSidebar}
         ehModoCriacao={ehModoCriacao}

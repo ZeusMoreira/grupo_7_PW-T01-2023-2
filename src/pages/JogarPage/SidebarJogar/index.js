@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './sidebar-jogar.css'
 import { Tooltip } from 'react-tooltip';
 
-const SidebarJogar = ({toggleSidebar, onQuizSelect}) => {
+const SidebarJogar = ({toggleSidebar, isSidebarOpen, onQuizSelect}) => {
   const {parametro} = useParams()
   const navigate = useNavigate()
   const [listagemQuizzes, setListagemQuizzes] = useState([])
@@ -39,7 +39,7 @@ const SidebarJogar = ({toggleSidebar, onQuizSelect}) => {
       });
       setListagemQuizzes(quizzes);
     } catch (error) {
-      console.error('Erro ao buscar quizzes:', error);
+      toast.error(`Erro ao buscar quizzes: ${error}`)
     } finally {
       setLoading(false);
     }

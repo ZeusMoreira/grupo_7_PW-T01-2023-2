@@ -174,4 +174,29 @@
     display: flex;
     flex-direction: column;
     width: 90%;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 600px) {
+    .respostas{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .wrapper-c-d{
+        margin-top: 30px;
+    }
+
+    .conteudo-principal {
+        height: 100%;
+    }
+
+    .pergunta h2 {
+        margin-top: 30px;
+    }
+
+    .botao-wrapper-respostas {
+        margin-bottom: 30px;
+    }
 }

@@ -241,12 +241,6 @@ const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao, ehModoEdicao, qu
     setEtapaAtual(1)
   }, [ehModoCriacao, ehModoEdicao])
   
-
-  const contentStyles = {
-    alignItems: (ehModoCriacao || ehModoEdicao) ? 'stretch' : 'center',
-    justifyContent: (ehModoCriacao || ehModoEdicao) ? 'stretch' : 'center',
-  };
-
   const editarPerguntaCapa = async () => {
     const dadosCapaQuizEdicao = {
       tituloQuiz: tituloQuizEdicao,
@@ -295,12 +289,7 @@ const Content = ({ toggleSidebar, isSidebarOpen, ehModoCriacao, ehModoEdicao, qu
   }  
 
   return (
-    <div className="content" style={contentStyles}>
-      {!isSidebarOpen && 
-        <i className="material-icons open-icon" onClick={toggleSidebar}>
-          menu
-        </i>
-      }
+    <div className="content">
       {
         (!ehModoCriacao && !ehModoEdicao) &&
         <p className="intro-edicao-criacao">

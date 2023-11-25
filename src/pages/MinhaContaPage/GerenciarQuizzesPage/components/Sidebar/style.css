@@ -154,7 +154,7 @@
     border-radius: 12px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
     .listagem-quizzes {
         display: flex;
         align-items: center;

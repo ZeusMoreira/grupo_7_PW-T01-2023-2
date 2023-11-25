@@ -35,7 +35,7 @@ const Sidebar = ({toggleSidebar, ehModoCriacao, setEhModoCriacao, setEhModoEdica
       });
       setListagemQuizzes(quizzes)
     } catch (error) {
-      console.error('Erro ao buscar categorias:', error);
+      toast.error(`Erro ao buscar categorias: ${error}`)
     } finally {
       setLoading(false); 
     }

@@ -29,8 +29,14 @@ export const JogarPage = () => {
                 </div>
             </div>
             <div className={`jogar-content ${isSidebarOpen ? 'open' : ''}`}>
+                {!isSidebarOpen && 
+                    <i className="material-icons open-icon" onClick={toggleSidebar}>
+                        menu
+                    </i>
+                }
                 <SidebarJogar
                     toggleSidebar={toggleSidebar}
+                    isSidebarOpen={isSidebarOpen}
                     onQuizSelect={handleQuizSelection}
                 />
                 <ContentJogar

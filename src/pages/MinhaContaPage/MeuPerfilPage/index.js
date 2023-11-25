@@ -22,7 +22,7 @@ export const MeuPerfilPage = () => {
         setDadosUsuario(doc.data());
       });
     } catch (error) {
-      console.error('Erro ao buscar dados do usuário:', error);
+      toast.error(`Erro ao buscar dados do usuário: ${error}`)
     } finally {
       setLoading(false); 
     }

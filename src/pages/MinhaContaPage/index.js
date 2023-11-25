@@ -88,11 +88,11 @@ export const MinhaContaPage = () => {
     }
   }, [location.pathname])
   
-  const buscarDadosUsuario = async (username) => {
+  const buscarDadosUsuario = async (uid) => {
     try {
       const db = getFirestore();
       const usersCollection = collection(db, 'users');
-      const querySnapshot = await getDocs(query(usersCollection, where('username', '==', username)));
+      const querySnapshot = await getDocs(query(usersCollection, where('uid', '==', uid)));
       querySnapshot.forEach((doc) => {
         setTipoUser(doc.data().tipo);
       });
@@ -109,7 +109,7 @@ export const MinhaContaPage = () => {
     };
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        buscarDadosUsuario(user.displayName);
+        buscarDadosUsuario(user.uid);
       } else {
         setLoading(false); 
       }

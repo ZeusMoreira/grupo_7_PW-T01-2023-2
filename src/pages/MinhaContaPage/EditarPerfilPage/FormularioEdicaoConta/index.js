@@ -127,7 +127,6 @@ function FormularioEdicaoConta() {
       if(state.usuario !== '' && state.senha === '' && state.senhaRepetida === '') {
         alterarDadosApenasUsuario()
       } else if(state.usuario !== '' && state.senha !== '' && state.senhaRepetida !== '') {
-        console.log('oi')
         alterarDadosUsuarioEsenha()
       } else if(state.usuario === '' && state.senha !== '' && state.senhaRepetida !== ''){
         alterarDadosApenasSenha()

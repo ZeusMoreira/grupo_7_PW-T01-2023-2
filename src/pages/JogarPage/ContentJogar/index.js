@@ -69,7 +69,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
         categoriaFavorita: categoriaJogar,
       });
     } catch (error) {
-      console.error('Erro ao atualizar o usuário no Firestore:', error);
+      toast.error(`Erro ao atualizar o usuário no Firestore: ${error}`)
     }
     setLoading(false)
   };
@@ -134,11 +134,6 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
     navigate("/home")
   }
 
-  const contentStyles = {
-    alignItems: (quizIdSelecionado !== null) ? 'stretch' : 'center',
-    justifyContent: (quizIdSelecionado !== null) ? 'stretch' : 'center',
-  };
-
   const botaoRetornarProps = {
     backgroundColor: "#f4b831",
     color: "white",
@@ -159,21 +154,16 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
   }
 
   return (
-    <div className="content-jogar" style={contentStyles}>
-        {abrirVerMais && <div className="overlay-login" onClick={fecharVerMais}></div>}
+    <div className="content-jogar">
+        {abrirVerMais && <div className="overlay-resposta" onClick={fecharVerMais}></div>}
         {abrirVerMais && (
-          <div className="modal-login">
+          <div className="modal-resposta">
             <p>{respostaVerMais}</p>
             <button className="botao-erro" onClick={fecharVerMais}>
               Fechar
             </button>
           </div>
         )}
-        {!isSidebarOpen && 
-            <i className="material-icons open-icon" onClick={toggleSidebar}>
-              menu
-            </i>
-        }
         {
             (quizIdSelecionado === null) &&
             <p className="intro-jogar">
@@ -200,7 +190,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
                               type="text"
                               className="textarea-estilizado-jogar"
                               value={perguntasJogar[indicePerguntaAtual].pergunta}
-                              disabled
+                              readOnly
                             />
                           
                         } 
@@ -221,7 +211,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
                                       />
                                   </div>
                                   {
-                                    perguntasJogar[indicePerguntaAtual].respostaA.length > 34 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaA)}>Ver mais</span> : null
+                                    perguntasJogar[indicePerguntaAtual].respostaA.trim().length > 30 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaA)}>Ver mais</span> : null
                                   }
                                 </div>
                                 <div className="resposta-b-jogar">
@@ -237,7 +227,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
                                       />
                                   </div>
                                   {
-                                    perguntasJogar[indicePerguntaAtual].respostaB.length > 34 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaB)}>Ver mais</span> : null
+                                    perguntasJogar[indicePerguntaAtual].respostaB.trim().length > 30 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaB)}>Ver mais</span> : null
                                   }
                                 </div>
                             </div>
@@ -255,7 +245,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
                                   />
                                   </div>
                                   {
-                                    perguntasJogar[indicePerguntaAtual].respostaC.length > 34 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaC)}>Ver mais</span> : null
+                                    perguntasJogar[indicePerguntaAtual].respostaC.trim().length > 30 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaC)}>Ver mais</span> : null
                                   }
                               </div>
                               <div className="resposta-d-jogar">
@@ -271,7 +261,7 @@ const ContentJogar = ({ toggleSidebar, isSidebarOpen, quizIdSelecionado}) => {
                                   />
                                   </div>
                                   {
-                                    perguntasJogar[indicePerguntaAtual].respostaD.length > 34 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaD)}>Ver mais</span> : null
+                                    perguntasJogar[indicePerguntaAtual].respostaD.trim().length > 30 ? <span className="ver-mais" onClick={() => expandirTexto(perguntasJogar[indicePerguntaAtual].respostaD)}>Ver mais</span> : null
                                   }    
                               </div>
                             </div>

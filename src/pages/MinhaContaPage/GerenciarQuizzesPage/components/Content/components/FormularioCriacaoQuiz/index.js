@@ -10,9 +10,7 @@ const FormularioCriacaoQuiz = ({categorias, tituloQuiz, onTituloQuizSet, numeroP
 
     const handleSubmitCapaQuiz = async (event) => {
         event.preventDefault();
-        console.log('inicio')
         if (tituloQuiz !== '') {
-            console.log('meio')
           if(!ehTituloValido(tituloQuiz)){
             setTituloQuizFormatoValido(false)
           } else {

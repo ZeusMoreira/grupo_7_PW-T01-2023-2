@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BotaoCategoria from './BotaoCategoria';
 import BotaoTematico from '../../components/BotaoTematico';
 import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 export const HomePage = () => {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const HomePage = () => {
           await signOut(auth);
           navigate('/');
         } catch (error) {
-          console.error('Ocorreu um erro durante o logout:', error);
+          toast.error(`Ocorreu um erro durante o logout: ${error}`)
         }
     };
 
@@ -157,15 +158,17 @@ export const HomePage = () => {
                     <h1 className="logo-home">Quizz<span>ES</span></h1>
                 </div>
                 <div id="menu-options-home">
-                    <span className="user-text-home" onMouseEnter={handleInside}>
-                        Olá, {userName}! 
-                        { balaoVisivel &&
-                            <i className="material-icons" style={iconStyle}>arrow_drop_up</i>
-                        }
-                        { !balaoVisivel &&
-                            <i className="material-icons" style={iconStyle}>arrow_drop_down</i>
-                        }
-                    </span>     
+                    <div className="user-text-home" onMouseEnter={handleInside}>
+                        <span>Olá, {userName}!</span> 
+                        <span>
+                            { balaoVisivel &&
+                                <i className="material-icons icon-drop-up" style={iconStyle}>arrow_drop_up</i>
+                            }
+                            { !balaoVisivel &&
+                                <i className="material-icons icon-drop-down" style={iconStyle}>arrow_drop_down</i>
+                            }
+                        </span>
+                    </div>     
                     <div id="container-menu" className={`container-menu ${balaoVisivel ? 'visible' : ''}`}>
                         <div className="telhado-menu-home"></div>
                         <div id="balao-retangular-menu-home">
@@ -189,7 +192,7 @@ export const HomePage = () => {
                 </div>
             </div>
             <div className="categorias-populares">
-                <span>Categorias populares</span>
+                <span className="categorias-populares-title">Categorias populares</span>
                 <div className="botoes-categoria">
                     <BotaoCategoria {...botaoCategoriaTopUm} onClick={handleCategoriaTopUm}>
 

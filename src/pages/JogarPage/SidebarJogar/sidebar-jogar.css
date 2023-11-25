@@ -63,11 +63,12 @@
 }
 
 .categoria-combobox-jogar{
+    text-indent: 10px;
+    height: 43px;
     width: 100% !important;
     background-color: white;
     border-radius: 12px;
     border: 1px solid;
-    padding: 10px;
     box-sizing: border-box;
     font-weight: bold;
     color: #6b6060;
@@ -83,7 +84,8 @@
     background-color: white;
     border-radius: 12px;
     border: 1px solid;
-    padding: 10px;
+    text-indent: 10px;
+    height: 43px;
     box-sizing: border-box;
     font-weight: bold;
     color: #6b6060;
@@ -125,7 +127,7 @@
     border-radius: 12px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
     .listagem-quizzes-jogar {
         display: flex;
         align-items: center;
